@@ -1,0 +1,91 @@
+@startuml
+!include C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Component Diagram - Package-by-Feature Architecture (Zero-3D Modern Minimalist Portfolio)
+
+Container_Boundary(spa_container, "Modern Minimalist Architect Portfolio SPA") {
+
+    package "src/navigation (Header, Skip Link & Viewport Navigation Feature)" {
+        Component(sticky_navbar, "StickyNavbar", "React Component", "Header banner with branding, desktop navigation links, mobile menu toggle, and Full CV modal button.")
+        Component(skip_link, "SkipLink", "React Component", "Keyboard-accessible skip link focusing <main id='main-content'>.")
+        Component(mobile_menu, "MobileNavMenu", "React Component", "Accessible mobile drawer overlay for small viewports.")
+        Component(section_observer, "SectionObserverService", "Service", "IntersectionObserver syncing viewport sections to active navigation pill.")
+    }
+
+    package "src/hero (Executive Positioning, Verified Metrics & CTAs)" {
+        Component(hero_section, "HeroSection", "React Component", "Primary hero landmark (<section id='hero'>).")
+        Component(availability_badge, "AvailabilityBadge", "React Component", "Pulsing green indicator: Available for Architecture Leadership & Technical Advisory.")
+        Component(metrics_strip, "HeroMetricsStrip", "React Component", "4 high-impact metric counters: 15+ Yrs, 11,000+ Rules, 100k+ Approvals, 10M+ Heritage.")
+        Component(hero_actions, "HeroActionButtons", "React Component", "Quick action buttons linking to Projects, Experience, CV Drawer, and Contact.")
+    }
+
+    package "src/leadership (Architecture Philosophy, Governance & Guild)" {
+        Component(leadership_section, "LeadershipSection", "React Component", "Section container (<section id='leadership'>).")
+        Component(philosophy_card, "PhilosophyPillarCard", "React Component", "Card component for the 4 pillars: DDD, ADRs, Microservices, Mentorship.")
+        Component(governance_card, "GuildGovernanceCard", "React Component", "Exposition on Head of Architect Group role and spec-driven engineering.")
+    }
+
+    package "src/experience (Career Chronology & Deliverable Milestones)" {
+        Component(experience_section, "ExperienceSection", "React Component", "Section container (<section id='experience'>).")
+        Component(timeline_card, "ExperienceTimelineCard", "React Component", "Reverse chronological milestone card with tags, deliverables, and role badge.")
+        Component(experience_catalog, "experienceCatalog", "Data Catalog", "Detailed KulturIT achievements (E-ARK, API fabric, VirtueltMuseum) and public sector milestones.")
+    }
+
+    package "src/projects (Flagship Case Studies, Category Filter & Search)" {
+        Component(projects_section, "ProjectsSection", "React Component", "Section container (<section id='projects'>) orchestrating filter tabs, search bar, and grid.")
+        Component(filter_bar, "ProjectFilterBar", "React Component", "Tabs for [All], [Distributed], [Event-Driven], [Modernization], [Web] and live search input.")
+        Component(project_card, "ProjectCard", "React Component", "Detailed case study card with challenge, solution, verified metrics, tech stack pills, and links.")
+        Component(projects_catalog, "projectsCatalog", "Data Catalog", "6 flagship case studies: eKultur Handover, VirtueltMuseum, eKultur Core Gateway, eKultur AI Vision, Autosys, Regelforvaltning.")
+    }
+
+    package "src/skills (4-Quadrant Core Competency Matrix)" {
+        Component(skills_section, "SkillsSection", "React Component", "Section container (<section id='skills'>).")
+        Component(quadrant_card, "SkillQuadrantCard", "React Component", "Thematic category card (Architecture, Languages, Cloud/DevOps, Data/AI).")
+        Component(skills_catalog, "skillsCatalog", "Data Catalog", "Modern stack competencies: Python 3.12, FastAPI, React 19, IIIF, E-ARK, AWS EKS, OTLP.")
+    }
+
+    package "src/contact (Recruiter Dock, Clipboard & Notifications)" {
+        Component(contact_section, "ContactSection", "React Component", "Section container (<section id='contact'>) with calm peer-networking tone.")
+        Component(recruiter_dock, "RecruiterDock", "React Component", "1-click actions: [Copy Email], [LinkedIn], [GitHub], [Download CV].")
+        Component(toast_container, "ToastContainer", "React Component", "Accessible status region (role='status', aria-live='polite') for feedback.")
+        Component(clipboard_service, "ClipboardService", "Service", "Manages clipboard writes with multi-tier fallback (API -> execCommand -> mailto).")
+    }
+
+    package "src/manifest (Full CV Drawer Modal & Clean Print Engine)" {
+        Component(cv_drawer, "CVManifestDrawer", "React Component", "Accessible slide-over WAI-ARIA dialog with keyboard focus trap.")
+        Component(cv_print, "CvPrintManifest", "CSS / DOM", "Hidden-on-screen, visible-on-print resume document formatted via @media print.")
+    }
+
+    package "src/shared (Domain Calculators, State Store & Contracts)" {
+        Component(portfolio_store, "portfolioStore", "Zustand Store", "Central reactive state: activeSection, selectedCategory, searchQuery, isCvDrawerOpen, toast.")
+        Component(filter_calculator, "ProjectFilterCalculator", "Calculator", "Pure calculator: filters case studies by category and case-insensitive search queries.")
+        Component(clipboard_calculator, "ClipboardActionCalculator", "Calculator", "Pure calculator: determines clipboard strategy and formats feedback.")
+        Component(reading_calculator, "ReadingTimeCalculator", "Calculator", "Pure calculator: computes estimated reading time for dossiers.")
+    }
+}
+
+Rel(sticky_navbar, portfolio_store, "Reads activeSection; dispatches setIsCvDrawerOpen", "State Hook")
+Rel(sticky_navbar, section_observer, "Observes visible landmarks", "DOM Events")
+Rel(projects_section, filter_bar, "Renders filter tabs & search input", "JSX")
+Rel(projects_section, project_card, "Renders filtered list", "JSX")
+Rel(filter_bar, portfolio_store, "Dispatches setSelectedCategory and setSearchQuery", "Store Action")
+Rel(projects_section, filter_calculator, "Filters projects by category and query", "Pure Function")
+Rel(filter_bar, filter_calculator, "Calculates category item counts", "Pure Function")
+Rel(project_card, reading_calculator, "Calculates reading time", "Pure Function")
+
+Rel(recruiter_dock, clipboard_service, "Invokes email copy", "Async Method Call")
+Rel(clipboard_service, clipboard_calculator, "Resolves strategy & toast message", "Pure Function")
+Rel(clipboard_service, portfolio_store, "Dispatches setToast", "Store Action")
+Rel(toast_container, portfolio_store, "Subscribes to toast state", "State Hook")
+
+Rel(cv_drawer, portfolio_store, "Reads isCvDrawerOpen; dispatches setIsCvDrawerOpen", "State Hook")
+Rel(cv_drawer, experience_catalog, "Binds milestone chronology", "Imports")
+Rel(cv_drawer, skills_catalog, "Binds competencies", "Imports")
+
+Rel(experience_section, experience_catalog, "Binds enriched milestones", "Imports")
+Rel(projects_section, projects_catalog, "Binds 6 flagship case studies", "Imports")
+Rel(skills_section, skills_catalog, "Binds 4-quadrant competencies", "Imports")
+
+@enduml

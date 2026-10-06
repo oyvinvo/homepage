@@ -1,0 +1,33 @@
+@startuml
+!include C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context Diagram - Modern Minimalist Zero-3D Architect Portfolio
+
+Person(recruiter, "Executive Recruiter / Hiring Manager", "Evaluates senior engineering leadership, examines production track record, and exports clean 2-3 page print/PDF CV.")
+Person(architect, "Enterprise Architect / Fellow Engineer", "Explores architectural governance, ADR workflows, domain-driven case studies, and engineering philosophy.")
+Person(visitor, "Conference Organizer / Client", "Reviews technical speaking topics, advisory availability, and verifies credentials via GitHub and LinkedIn.")
+
+System(portfolio_app, "Modern Minimalist Architect Portfolio SPA", "Ultra-fast, zero-3D editorial web application built with React 18, TypeScript, and Tailwind CSS. Showcases verified production systems across KulturIT (eKultur Handover, VirtueltMuseum, API Fabric, AI Vision), Statens vegvesen (Autosys, Regelforvaltning), and Ciber.")
+
+System_Ext(nasjonalbiblioteket, "Nasjonalbiblioteket (National Library of Norway)", "Legal deposit repository receiving E-ARK packages via the eKultur Handover pipeline.")
+System_Ext(nordic_museums, "Nordic Cultural Heritage Ecosystem", "150+ museums served by eKultur API Fabric, VirtueltMuseum IIIF/360° domes, and Solr collections search.")
+System_Ext(search_crawlers, "Search Crawlers & Assistive Tech", "Googlebot, Bingbot, NVDA, and VoiceOver indexing semantic HTML5 landmarks, headings, and structured metadata.")
+System_Ext(github, "GitHub / Code Repositories", "Hosts source code, open-source repositories, and technical architecture artifacts.")
+System_Ext(linkedin, "LinkedIn Profile", "Professional network profile and enterprise endorsements.")
+System_Ext(browser_clipboard, "Browser Clipboard API", "Native system clipboard for 1-click email copy with multi-tier fallback.")
+System_Ext(browser_print, "Browser Print Subsystem", "Native browser print/PDF rendering engine formatting ink-friendly curriculum vitae via @media print.")
+
+Rel(recruiter, portfolio_app, "Evaluates executive metrics, filters case studies, copies email, prints CV", "HTTPS / Pointer / Touch")
+Rel(architect, portfolio_app, "Reads architectural philosophy, reviews eKultur & SVV case studies, navigates via keyboard", "Mouse / Keyboard / Touch")
+Rel(visitor, portfolio_app, "Explores leadership background and external links", "HTTPS")
+Rel(search_crawlers, portfolio_app, "Indexes semantic HTML headings, articles, and accessible content", "HTTP GET / DOM Parsing")
+Rel(portfolio_app, nasjonalbiblioteket, "Documents E-ARK archival delivery and OAIS compliance", "Case Study Link")
+Rel(portfolio_app, nordic_museums, "Documents multi-tenant API fabric & IIIF visual engines", "Case Study Link")
+Rel(portfolio_app, github, "Links to project repositories and open-source contributions", "HTTPS")
+Rel(portfolio_app, linkedin, "Links to professional profile", "HTTPS")
+Rel(portfolio_app, browser_clipboard, "Writes contact email via navigator.clipboard.writeText", "Async Clipboard API")
+Rel(portfolio_app, browser_print, "Invokes window.print() formatted by @media print stylesheet", "Native Print API")
+
+@enduml

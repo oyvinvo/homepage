@@ -1,0 +1,66 @@
+import { SkillCategoryGroup } from '../shared/types';
+
+export const skillsCatalog: SkillCategoryGroup[] = [
+  {
+    id: 'architecture-governance',
+    title: 'Architecture & Leadership',
+    description: 'Strategic technical leadership, architectural governance, and evolutionary system design.',
+    skills: [
+      { name: 'Clean Code & Software Readability', highlight: true, level: 'Core' },
+      { name: 'Domain-Driven Design (DDD)', highlight: true, level: 'Core' },
+      { name: 'Architect Group Leadership', highlight: true, level: 'Core' },
+      { name: 'Architecture Decision Records (ADR)', highlight: true, level: 'Core' },
+      { name: 'Central SSO & OAuth2/OIDC Architecture', highlight: true, level: 'Core' },
+      { name: 'GDPR & In-House Cookie Consent Architecture', highlight: true, level: 'Core' },
+      { name: 'Microfrontends Architecture', level: 'Core' },
+      { name: 'Multi-Tenant Ingress & RBAC Authorization', level: 'Core' },
+      { name: 'Refactoring & Software Craftsmanship', level: 'Core' },
+      { name: 'Engineering Mentorship & Guild Governance', level: 'Core' },
+      { name: 'C4 Architectural Modeling & RFCs', level: 'Advanced' },
+    ],
+  },
+  {
+    id: 'languages-frameworks',
+    title: 'Languages & Frameworks',
+    description: 'Modern full-stack technologies delivering reliable, high-performance web applications and services.',
+    skills: [
+      { name: 'Python 3.12 (FastAPI, SQLAlchemy 2.0)', highlight: true, level: 'Core' },
+      { name: 'React 19 & Next.js', highlight: true, level: 'Core' },
+      { name: 'TypeScript (Strict)', highlight: true, level: 'Core' },
+      { name: 'Three.js & React Three Fiber (R3F)', highlight: true, level: 'Advanced' },
+      { name: 'Material UI (MUI v6/v7) & Design Systems', highlight: true, level: 'Core' },
+      { name: 'Virtual 3D Rooms & 360° Spherical Panoramas', highlight: true, level: 'Core' },
+      { name: 'Java 25 (Spring Boot, E-ARK Workers)', level: 'Advanced' },
+      { name: 'REST & Server-Sent Events (SSE)', level: 'Advanced' },
+    ],
+  },
+  {
+    id: 'cloud-devops',
+    title: 'Cloud & Infrastructure',
+    description: 'Elastic, automated, secure deployment pipelines and multi-tenant container orchestration.',
+    skills: [
+      { name: 'AWS EKS Multi-Cluster Topology', highlight: true, level: 'Core' },
+      { name: 'Ambassador Gateway & Envoy Ingress', highlight: true, level: 'Core' },
+      { name: 'Docker & Multi-Stage Builds', highlight: true, level: 'Core' },
+      { name: 'Turborepo & npm Workspaces', highlight: true, level: 'Core' },
+      { name: 'uv & Poetry Package Managers', level: 'Advanced' },
+      { name: 'GitHub Actions & Release Please', level: 'Advanced' },
+      { name: 'Linux / Alpine Hardening', level: 'Advanced' },
+    ],
+  },
+  {
+    id: 'data-messaging',
+    title: 'Data & Distributed Systems',
+    description: 'Resilient data persistence, enterprise search, computer vision, and distributed observability.',
+    skills: [
+      { name: 'PostgreSQL & Alembic Migrations', highlight: true, level: 'Core' },
+      { name: 'PostgreSQL Custom Message Queue', highlight: true, level: 'Core' },
+      { name: 'E-ARK Archival Information Packages (AIP)', highlight: true, level: 'Core' },
+      { name: 'OpenTelemetry (OTLP) Tracing', highlight: true, level: 'Core' },
+      { name: 'Google Cloud Vision API (OCR)', highlight: true, level: 'Advanced' },
+      { name: 'Apache Solr & Full-Text Search', level: 'Advanced' },
+      { name: 'Prometheus & Sentry Observability', level: 'Advanced' },
+      { name: 'Oracle Database & Enterprise Archives', level: 'Advanced' },
+    ],
+  },
+];

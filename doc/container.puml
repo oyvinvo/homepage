@@ -1,0 +1,53 @@
+@startuml
+!include C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Container Diagram - Modern Minimalist Zero-3D Architect Portfolio
+
+Person(user, "Recruiter / Architect / Visitor", "Modern desktop or mobile web browser client.")
+
+System_Boundary(spa_boundary, "Modern Minimalist Architect Portfolio SPA (Vite + React 18)") {
+    Container(nav_container, "Navigation & Header", "React / Tailwind CSS", "Sticky header banner, accessible keyboard skip link, section observer highlights, and Full CV modal trigger.")
+    Container(hero_container, "Hero & Executive Metrics", "React / Tailwind CSS", "Executive positioning, role subtitle, availability indicator, 4 verified impact metric cards, and quick CTAs.")
+    Container(leadership_container, "Leadership & Philosophy", "React / Tailwind CSS", "Head of Architect Group mandate, ADR governance workflows, and 4 architectural philosophy pillars.")
+    Container(experience_container, "Experience Timeline", "React / Tailwind CSS", "Chronological career milestones highlighting KulturIT architecture leadership (E-ARK, API fabric, VirtueltMuseum) and public sector deliverables.")
+    Container(projects_container, "Featured Case Studies", "React / Tailwind CSS", "Flagship technical dossiers (eKultur Handover, VirtueltMuseum, eKultur Core Gateway, eKultur AI Vision, Autosys KSAK, Regelforvaltning) with category tabs and search.")
+    Container(skills_container, "Competency Matrix", "React / Tailwind CSS", "4-quadrant competency grid: Architecture (DDD, E-ARK, IIIF), Languages (Python 3.12, React 19, Java 25), Cloud (AWS EKS, Ambassador, Turborepo), Data/AI (PostgreSQL, OTLP, Vision API).")
+    Container(contact_container, "Recruiter Dock & Toast Region", "React / Tailwind CSS", "1-click clipboard email copy, external profile links, and accessible aria-live toast notification region with calm peer-networking tone.")
+    Container(manifest_container, "CV Manifest & Print Engine", "React / Tailwind CSS", "Accessible WAI-ARIA modal drawer with focus trap and @media print formatted curriculum vitae.")
+    Container(state_store, "Zustand Portfolio Store", "Zustand 5", "Manages active section, project filter category, search query, CV drawer modal state, and toast notification queue.")
+    Container(domain_calculators, "Pure Domain Calculators", "TypeScript Class", "Pure deterministic logic: ProjectFilterCalculator (category & full-text search), ClipboardActionCalculator, ReadingTimeCalculator.")
+    Container(domain_catalogs, "Domain Catalogs & Models", "TypeScript DTOs", "Immutable production records: projectsCatalog (6 case studies), skillsCatalog (4 quadrants), experienceCatalog (6 milestones).")
+}
+
+System_Ext(browser_dom, "Browser DOM & Window", "Standard semantic HTML5 tree, focus management, and viewport scrolling.")
+System_Ext(browser_clipboard, "Browser Clipboard API", "Async Clipboard API with execCommand fallback for 1-click email copy.")
+System_Ext(browser_print, "Browser Print Subsystem", "Native print pipeline formatting ink-friendly curriculum vitae via @media print.")
+System_Ext(external_links, "External Profiles & Repositories", "LinkedIn, GitHub, and live reference links.")
+
+Rel(user, nav_container, "Clicks nav links, activates skip link, opens CV drawer", "Keyboard / Pointer")
+Rel(user, hero_container, "Reads executive metrics and activates quick actions", "Visual / Pointer")
+Rel(user, projects_container, "Toggles category filter pills and enters search queries", "Pointer / Keyboard")
+Rel(user, contact_container, "Clicks [Copy Email], accesses LinkedIn & GitHub", "Pointer / Keyboard")
+Rel(user, manifest_container, "Navigates CV drawer (trapped focus) or invokes [Print]", "Keyboard / Pointer")
+
+Rel(nav_container, state_store, "Reads activeSection; dispatches setActiveSection and openCvDrawer", "Zustand Hook")
+Rel(projects_container, state_store, "Reads selectedCategory & searchQuery; dispatches updates", "Zustand Hook")
+Rel(projects_container, domain_calculators, "Filters case studies and calculates counts via ProjectFilterCalculator", "Method Calls")
+Rel(contact_container, state_store, "Dispatches showToast upon clipboard write", "Zustand Actions")
+Rel(contact_container, domain_calculators, "Resolves clipboard strategy via ClipboardActionCalculator", "Method Calls")
+Rel(manifest_container, state_store, "Reads isCvDrawerOpen; dispatches closeCvDrawer", "Zustand Hook")
+
+Rel(hero_container, domain_catalogs, "Reads verified metrics & executive bio", "Imports")
+Rel(experience_container, domain_catalogs, "Reads career milestone records", "Imports")
+Rel(projects_container, domain_catalogs, "Reads flagship project dossiers", "Imports")
+Rel(skills_container, domain_catalogs, "Reads 4-quadrant skill inventories", "Imports")
+Rel(manifest_container, domain_catalogs, "Reads comprehensive curriculum vitae data", "Imports")
+
+Rel(nav_container, browser_dom, "Observes viewport scroll intersections", "IntersectionObserver")
+Rel(contact_container, browser_clipboard, "Writes email string to system clipboard", "navigator.clipboard")
+Rel(manifest_container, browser_print, "Invokes window.print()", "Native Print API")
+Rel(contact_container, external_links, "Navigates to external profiles", "HTTPS Anchors")
+
+@enduml
