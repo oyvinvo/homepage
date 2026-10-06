@@ -27,9 +27,9 @@ const getInitialTheme = (): 'light' | 'dark' => {
   } catch {
     // Ignore restricted localStorage in sandboxed or testing environments
   }
-  // Default to vibrant colorful light mode
-  applyThemeToDom('light');
-  return 'light';
+  // Default to rich dark mode
+  applyThemeToDom('dark');
+  return 'dark';
 };
 
 const initialTheme = getInitialTheme();
