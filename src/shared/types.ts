@@ -18,6 +18,14 @@ export interface MetricItem {
   detail?: string;
 }
 
+export type ExperienceMilestone = CareerMilestone;
+export type ProjectMetric = MetricItem;
+
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
 export interface ProjectCaseStudy {
   id: string;
   title: string;
@@ -29,7 +37,7 @@ export interface ProjectCaseStudy {
   architectureSolution: string;
   metrics: MetricItem[];
   techStack: string[];
-  links?: Array<{ label: string; url: string }>;
+  links?: ProjectLink[];
 }
 
 export interface SkillItem {
