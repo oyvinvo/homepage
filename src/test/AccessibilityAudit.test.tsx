@@ -141,14 +141,17 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
       expect(document.activeElement).toBe(cvButton);
     });
 
-    it('toggles CV manifest drawer via global "c" keyboard shortcut', () => {
+    it('does not hijack "c" or "Ctrl+C" / "Cmd+C" copy keystrokes (WCAG 2.1.4)', () => {
       render(<App />);
 
       expect(usePortfolioStore.getState().isCvDrawerOpen).toBe(false);
-      fireEvent.keyDown(window, { key: 'c' });
-      expect(usePortfolioStore.getState().isCvDrawerOpen).toBe(true);
 
-      fireEvent.keyDown(window, { key: 'Escape' });
+      // Pressing Ctrl+C should never open the drawer
+      fireEvent.keyDown(window, { key: 'c', ctrlKey: true });
+      expect(usePortfolioStore.getState().isCvDrawerOpen).toBe(false);
+
+      // Pressing single 'c' should also never open the drawer
+      fireEvent.keyDown(window, { key: 'c' });
       expect(usePortfolioStore.getState().isCvDrawerOpen).toBe(false);
     });
   });

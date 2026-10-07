@@ -12,7 +12,7 @@ import { CursorTrail3D } from './effects/CursorTrail3D';
 import { usePortfolioStore } from './shared/store';
 
 export const App: React.FC = () => {
-  const { theme, setActiveSection, setIsCvDrawerOpen } = usePortfolioStore();
+  const { theme, setActiveSection } = usePortfolioStore();
 
   // Sync theme with document.documentElement and color-scheme
   useEffect(() => {
@@ -62,26 +62,6 @@ export const App: React.FC = () => {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [setActiveSection]);
-
-  // Global keyboard shortcut ('c' for CV)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        document.activeElement instanceof HTMLInputElement ||
-        document.activeElement instanceof HTMLTextAreaElement
-      ) {
-        return;
-      }
-
-      if (e.key === 'c' || e.key === 'C') {
-        e.preventDefault();
-        setIsCvDrawerOpen(true);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [setIsCvDrawerOpen]);
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#070b14] text-slate-900 dark:text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950 transition-colors duration-200">
