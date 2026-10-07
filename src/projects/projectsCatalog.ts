@@ -2,6 +2,38 @@ import { ProjectCaseStudy } from '../shared/types';
 
 export const projectsCatalog: ProjectCaseStudy[] = [
   {
+    id: 'bekymringsmestring',
+    title: 'Bekymringsmestring: Mental Health & Mindfulness Platform',
+    client: 'Volden (Enkeltpersonforetak)',
+    period: '2020–Present',
+    category: 'web',
+    summary:
+      'Full-stack digital mental health platform providing guided mindfulness audio meditations, national certified instructor directory with geo-mapping, psychoeducational resources, and automated book checkout.',
+    challenge:
+      'Delivering a responsive, zero-PII mental health platform with seamless mobile audio playback and interactive nationwide instructor mapping, while modernizing legacy serverless extensions into hardened, bot-protected Cloud Functions before platform deprecation deadlines.',
+    architectureSolution:
+      'Engineered a modern serverless SPA utilizing React, Material-UI, Leaflet geo-mapping, and Firebase. Implemented fine-grained Cloud Firestore security rules with custom claims (Admin/Instructor), migrated transactional email to HTTPS callable Cloud Functions on Node 22 with Google reCAPTCHA v3 bot protection, and integrated HTML5 Web Audio API for mindfulness tracks.',
+    metrics: [
+      { label: 'Cloud Architecture', value: 'Serverless Firebase', detail: 'Firestore, Auth & Node 22 Cloud Functions' },
+      { label: 'Bot Defense & Mail', value: 'reCAPTCHA + HTTPS', detail: 'Zero-extension callable email order pipeline' },
+      { label: 'Interactive Features', value: 'Audio & Leaflet', detail: 'Guided meditation tracks & geo-directory' },
+    ],
+    techStack: [
+      'React',
+      'TypeScript',
+      'Firebase Cloud Firestore',
+      'Cloud Functions (Node 22)',
+      'Firebase Auth',
+      'Material-UI',
+      'Leaflet Maps',
+      'Web Audio API',
+      'Google reCAPTCHA',
+    ],
+    links: [
+      { label: 'Live Platform', url: 'https://bekymringsmestring.no/' },
+    ],
+  },
+  {
     id: 'vm-3d',
     title: 'VirtueltMuseum 3D: Curated Virtual 3D Rooms & Artifacts (vm/3d)',
     client: 'KulturIT & Nordic Museums',

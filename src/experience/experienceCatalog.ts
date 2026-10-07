@@ -33,6 +33,33 @@ export const experienceCatalog: CareerMilestone[] = [
     ],
   },
   {
+    id: 'volden',
+    period: '2020–Present',
+    role: 'Founder & Full-Stack Architect',
+    company: 'Volden (Enkeltpersonforetak)',
+    location: 'Lillehammer, Norway',
+    badge: 'Independent Practice',
+    summary:
+      'Operating an independent architectural consulting practice (enkeltpersonforetak) delivering specialized modern web and cloud solutions. Designed, architected, and continuously maintain the production platform Bekymringsmestring.no.',
+    architectureHighlights: [
+      'Digital Mental Health Platform: Conceived and engineered the full-stack architecture for bekymringsmestring.no, a mental health, guided mindfulness, and author portal.',
+      'Serverless Cloud Architecture: Built with React, Material-UI, and Google Firebase (Cloud Firestore with RBAC custom claims, Cloud Functions on Node 22).',
+      'Modern Serverless Migration: Decommissioned deprecated Firebase Extensions in favor of secured HTTPS callable Cloud Functions with Google reCAPTCHA server-side validation and automated transactional email dispatch.',
+      'Interactive Geo & Audio: Implemented client-side meditation audio player using HTML5 Web Audio API, interactive national instructor map with Leaflet, and automated multi-step book order checkout.',
+    ],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Firebase Cloud Firestore',
+      'Cloud Functions (Node 22)',
+      'Firebase Auth & RBAC',
+      'Material-UI',
+      'Leaflet Maps',
+      'Web Audio API',
+      'Google reCAPTCHA',
+    ],
+  },
+  {
     id: 'autosys-ksak',
     period: '2016–2018',
     role: 'Senior System Architect & Full-Stack Lead',

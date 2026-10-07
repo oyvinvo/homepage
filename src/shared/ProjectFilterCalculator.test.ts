@@ -130,19 +130,26 @@ describe('ProjectFilterCalculator', () => {
   });
 
   describe('projectsCatalog Production Invariants (Feature 007)', () => {
-    it('contains exactly 10 production case studies with exact category distribution', () => {
+    it('contains exactly 12 production case studies with exact category distribution', () => {
       const counts = ProjectFilterCalculator.countByCategory(projectsCatalog);
-      expect(counts['all']).toBe(11);
+      expect(counts['all']).toBe(12);
       expect(counts['distributed']).toBe(4);
-      expect(counts['web']).toBe(4);
+      expect(counts['web']).toBe(5);
       expect(counts['event-driven']).toBe(2);
       expect(counts['modernization']).toBe(1);
 
       const allProjects = ProjectFilterCalculator.filter(projectsCatalog, 'all', '');
-      expect(allProjects).toHaveLength(11);
+      expect(allProjects).toHaveLength(12);
     });
 
     it('finds projects by case-insensitive keyword searches for authentic eKultur & VM terms', () => {
+      // Bekymringsmestring -> bekymringsmestring
+      const bekymringMatches = ProjectFilterCalculator.filter(projectsCatalog, 'all', 'bekymringsmestring');
+      expect(bekymringMatches.some((p) => p.id === 'bekymringsmestring')).toBe(true);
+
+      const mindfulnessMatches = ProjectFilterCalculator.filter(projectsCatalog, 'all', 'mindfulness');
+      expect(mindfulnessMatches.some((p) => p.id === 'bekymringsmestring')).toBe(true);
+
       // vm/3d -> vm-3d
       const vm3dMatches = ProjectFilterCalculator.filter(projectsCatalog, 'all', 'vm/3d');
       expect(vm3dMatches.some((p) => p.id === 'vm-3d')).toBe(true);

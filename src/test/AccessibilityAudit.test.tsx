@@ -34,9 +34,12 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
       expect(screen.getByRole('navigation', { name: /main navigation/i })).toBeInTheDocument(); // <nav>
       expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // <footer>
 
-      // Verify ZERO 3D canvas elements in DOM
+      // Verify decorative 3D effects are non-blocking and screen-reader hidden
       const canvases = container.querySelectorAll('canvas');
-      expect(canvases).toHaveLength(0);
+      canvases.forEach((c) => {
+        expect(c).toHaveAttribute('aria-hidden', 'true');
+        expect(c.className).toContain('pointer-events-none');
+      });
     });
 
     it('renders all core semantic sections with correct IDs', () => {
@@ -194,11 +197,12 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
   });
 
   describe('5. Feature 007: Enriched CV Drawer & Print Pagination Stability', () => {
-    it('renders all 11 enriched architecture case studies within the CV drawer', () => {
+    it('renders all 12 enriched architecture case studies within the CV drawer', () => {
       usePortfolioStore.setState({ isCvDrawerOpen: true });
       render(<CVManifestDrawer />);
 
       expect(screen.getByRole('heading', { name: /key architectural case studies/i })).toBeInTheDocument();
+      expect(screen.getByText(/Bekymringsmestring: Mental Health & Mindfulness Platform/i)).toBeInTheDocument();
       expect(screen.getByText(/VirtueltMuseum 3D: Curated Virtual 3D Rooms & Artifacts \(vm\/3d\)/i)).toBeInTheDocument();
       expect(screen.getByText(/VirtueltMuseum 360: Immersive 360° Panoramic Experiences \(vm\/360\)/i)).toBeInTheDocument();
       expect(screen.getByText(/VirtueltMuseum: Scrollytelling Exhibitions & Quizzes \(vm\/scrollytelling & vm\/quiz\)/i)).toBeInTheDocument();
@@ -220,10 +224,12 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
       expect(avoidBreakElements.length).toBeGreaterThanOrEqual(8);
     });
 
-    it('ensures zero WebGL canvas and zero 3D runtime overhead across full application', () => {
+    it('ensures 3D cursor trail effect is non-blocking (pointer-events-none) and accessible (aria-hidden)', () => {
       const { container } = render(<App />);
-      expect(container.querySelectorAll('canvas')).toHaveLength(0);
-      expect(document.querySelector('canvas')).toBeNull();
+      const canvas = container.querySelector('canvas');
+      expect(canvas).toBeInTheDocument();
+      expect(canvas).toHaveAttribute('aria-hidden', 'true');
+      expect(canvas?.className).toContain('pointer-events-none');
     });
   });
 

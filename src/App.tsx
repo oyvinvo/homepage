@@ -8,6 +8,7 @@ import { SkillsSection } from './skills/SkillsSection';
 import { ContactSection } from './contact/ContactSection';
 import { CVManifestDrawer } from './manifest/CVManifestDrawer';
 import { ToastNotification } from './shared/ToastNotification';
+import { CursorTrail3D } from './effects/CursorTrail3D';
 import { usePortfolioStore } from './shared/store';
 
 export const App: React.FC = () => {
@@ -107,6 +108,9 @@ export const App: React.FC = () => {
       {/* Global Modals & Notifications */}
       <CVManifestDrawer />
       <ToastNotification />
+
+      {/* 3D Perspective Cursor Trail Effect */}
+      <CursorTrail3D />
     </div>
   );
 };
