@@ -12,9 +12,7 @@ export const CursorTrail3D: React.FC = () => {
   useEffect(() => {
     // Vestibular accessibility: disable if user prefers reduced motion
     if (typeof window === 'undefined' || !window.matchMedia) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    // Disable on touch-only devices
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)')?.matches) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -48,34 +46,31 @@ export const CursorTrail3D: React.FC = () => {
       }
     };
 
-    const handlePointerMove = (e: PointerEvent) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-
-      const dist = Math.hypot(mouseX - lastSpawnX, mouseY - lastSpawnY);
+    const handleMove = (clientX: number, clientY: number) => {
+      const dist = Math.hypot(clientX - lastSpawnX, clientY - lastSpawnY);
       // Delicate, sparse spawn: 1 subtle micro-spark every 16px of travel
       if (dist > 16) {
         particles.push(
           CursorTrailCalculator.createParticle(
-            mouseX + (Math.random() - 0.5) * 4,
-            mouseY + (Math.random() - 0.5) * 4,
+            clientX + (Math.random() - 0.5) * 4,
+            clientY + (Math.random() - 0.5) * 4,
             getRandomColor(),
             false
           )
         );
-        lastSpawnX = mouseX;
-        lastSpawnY = mouseY;
+        lastSpawnX = clientX;
+        lastSpawnY = clientY;
         startLoopIfNeeded();
       }
     };
 
-    const handlePointerDown = (e: PointerEvent) => {
-      // Subtle 3-spark micro-accent on click
+    const handleDown = (clientX: number, clientY: number) => {
+      // Subtle 3-spark micro-accent on tap or click
       for (let i = 0; i < 3; i++) {
         particles.push(
           CursorTrailCalculator.createParticle(
-            e.clientX + (Math.random() - 0.5) * 6,
-            e.clientY + (Math.random() - 0.5) * 6,
+            clientX + (Math.random() - 0.5) * 6,
+            clientY + (Math.random() - 0.5) * 6,
             getRandomColor(),
             true
           )
@@ -84,8 +79,32 @@ export const CursorTrail3D: React.FC = () => {
       startLoopIfNeeded();
     };
 
+    const handlePointerMove = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return;
+      handleMove(e.clientX, e.clientY);
+    };
+
+    const handlePointerDown = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return;
+      handleDown(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        handleDown(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('pointerdown', handlePointerDown, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
@@ -134,6 +153,8 @@ export const CursorTrail3D: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchstart', handleTouchStart);
       if (animFrameId) {
         cancelAnimationFrame(animFrameId);
       }

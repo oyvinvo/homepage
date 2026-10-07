@@ -16,8 +16,10 @@ We implemented a **Zero-Cost Visual Effects Suite** without adding any external 
 2. **Architectural Constellation Grid (`HeroConstellationSvg.tsx`)**:
    - Pure vector SVG illustrating distributed service nodes and pulsed data conduits.
    - 0 canvas elements, 0 WebGL overhead, 100% vector crispness on high-DPI displays.
-3. **Tactile 3D Perspective Card Tilt & Specular Glare (`useCardTilt.ts` & `ProjectCard.tsx`)**:
+3. **Tactile 3D Perspective Card Tilt & Specular Glare (`useCardTilt.ts` & Card Components)**:
    - Hardware-accelerated CSS 3D transforms (`perspective(1000px) rotateX(...) rotateY(...) scale3d(...)`) with dynamic radial specular glare.
+   - **Touchscreen & Mobile Parity**: Passive scroll observer tracks card vertical offset relative to viewport center, dynamically applying 3D perspective pitch (`rotateX`) and sweeping specular sheen across the card surface as cards scroll into, through, and out of the viewport.
+   - **Direct Touch Interaction**: Touch handlers (`onTouchStart`, `onTouchMove`, `onTouchEnd`) deliver tactile 3D tilting under finger gestures without impeding native scroll gestures.
    - Automatically disabled when `prefers-reduced-motion: reduce` is active.
 
 ## Consequences

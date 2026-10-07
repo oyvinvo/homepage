@@ -11,7 +11,16 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const { cardRef, style, glarePosition, handleMouseMove, handleMouseLeave } = useCardTilt({
+  const {
+    cardRef,
+    style,
+    glarePosition,
+    handleMouseMove,
+    handleMouseLeave,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+  } = useCardTilt({
     maxTilt: 4,
     scale: 1.01,
   });
@@ -22,14 +31,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       style={style}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-white/95 dark:bg-slate-900/50 border border-blue-200/70 dark:border-slate-800 hover:border-blue-400 dark:hover:border-cyan-700/60 transition-colors shadow-sm overflow-hidden"
     >
       {/* Specular glare overlay */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px rounded-xl transition-opacity duration-300"
         style={{
           background: `radial-gradient(400px circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(56, 189, 248, 0.12), transparent 70%)`,
+          opacity: glarePosition.opacity,
         }}
       />
 

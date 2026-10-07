@@ -33,4 +33,32 @@ describe('CursorTrail3D Component', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas).toBeInTheDocument();
   });
+
+  it('registers and removes touch and pointer event listeners on window', () => {
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
+      clearRect: vi.fn(),
+      save: vi.fn(),
+      restore: vi.fn(),
+      beginPath: vi.fn(),
+      arc: vi.fn(),
+      fill: vi.fn(),
+    } as unknown as CanvasRenderingContext2D);
+
+    const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
+    const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
+
+    const { unmount } = render(<CursorTrail3D />);
+
+    expect(addEventListenerSpy).toHaveBeenCalledWith('touchmove', expect.any(Function), { passive: true });
+    expect(addEventListenerSpy).toHaveBeenCalledWith('touchstart', expect.any(Function), { passive: true });
+    expect(addEventListenerSpy).toHaveBeenCalledWith('pointermove', expect.any(Function), { passive: true });
+    expect(addEventListenerSpy).toHaveBeenCalledWith('pointerdown', expect.any(Function), { passive: true });
+
+    unmount();
+
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('touchmove', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('touchstart', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('pointermove', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('pointerdown', expect.any(Function));
+  });
 });

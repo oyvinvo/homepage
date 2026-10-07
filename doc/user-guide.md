@@ -356,7 +356,15 @@ The portfolio incorporates tasteful, zero-overhead visual effects that elevate i
    - Pure vector SVG illustrating distributed service nodes and pulsed data conduits.
    - Zero canvas elements, zero WebGL overhead, and 100% vector crispness across all retina displays.
 
-3. **Tactile 3D Perspective Card Tilt (`src/effects/useCardTilt.ts` & `src/projects/ProjectCard.tsx`)**:
+3. **Tactile 3D Perspective Card Tilt & Glare (`src/effects/useCardTilt.ts` & Card Components)**:
    - Hardware-accelerated CSS 3D transforms (`perspective(1000px) rotateX(...) rotateY(...) scale3d(...)`) with dynamic radial specular glare.
+   - **Touchscreen & Scroll-Over Reaction**: A passive scroll listener calculates card vertical position relative to viewport center, automatically applying dynamic 3D perspective pitch (`rotateX`) and a sweeping specular glare sheen as cards scroll into view, level out at center, and tilt forward as they leave.
+   - **Direct Touch Gestures**: Supports direct finger touch tilting (`onTouchStart`, `onTouchMove`, `onTouchEnd`) for tactile responsiveness without interfering with native page scrolling.
    - Automatically disabled when `@media (prefers-reduced-motion: reduce)` is detected.
+
+4. **3D Cursor & Touch Spark Trail (`src/effects/CursorTrail3D.tsx`)**:
+   - Subtle, ambient micro-sparks rendered via lightweight 2D canvas with 3D perspective projection.
+   - Responds passively to both cursor motion and touchscreen drag/scroll gestures.
+   - Auto-sleeps when inactive for zero battery or GPU drain.
+
 

@@ -7,6 +7,9 @@ export const HeroPortraitCard: React.FC = () => {
     style: portraitTiltStyle,
     handleMouseMove: handlePortraitMouseMove,
     handleMouseLeave: handlePortraitMouseLeave,
+    handleTouchStart: handlePortraitTouchStart,
+    handleTouchMove: handlePortraitTouchMove,
+    handleTouchEnd: handlePortraitTouchEnd,
   } = useCardTilt({
     maxTilt: 6,
     scale: 1.015,
@@ -25,6 +28,9 @@ export const HeroPortraitCard: React.FC = () => {
         style={portraitTiltStyle}
         onMouseMove={handlePortraitMouseMove}
         onMouseLeave={handlePortraitMouseLeave}
+        onTouchStart={handlePortraitTouchStart}
+        onTouchMove={handlePortraitTouchMove}
+        onTouchEnd={handlePortraitTouchEnd}
         className="relative rounded-2xl bg-white/95 dark:bg-slate-900/90 border border-sky-200/90 dark:border-slate-700/80 p-3 shadow-xl dark:shadow-2xl backdrop-blur-sm"
       >
         <picture>
