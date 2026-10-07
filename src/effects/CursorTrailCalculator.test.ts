@@ -123,20 +123,20 @@ describe('CursorTrailCalculator', () => {
       expect(p.z).toBeLessThanOrEqual(20);
       expect(p.color).toBe('#38bdf8');
       expect(p.alpha).toBe(1);
-      expect(p.size).toBeGreaterThanOrEqual(4);
-      expect(p.size).toBeLessThanOrEqual(9);
-      expect(p.life).toBeGreaterThanOrEqual(25);
-      expect(p.life).toBeLessThanOrEqual(45);
+      expect(p.size).toBeGreaterThanOrEqual(1.2);
+      expect(p.size).toBeLessThanOrEqual(2.2);
+      expect(p.life).toBeGreaterThanOrEqual(10);
+      expect(p.life).toBeLessThanOrEqual(16);
       expect(p.maxLife).toBe(p.life);
     });
 
     it('creates burst particles with higher velocity and distinct size bounds', () => {
       const burst = CursorTrailCalculator.createParticle(100, 100, '#f59e0b', true);
       expect(burst.color).toBe('#f59e0b');
-      expect(burst.size).toBeGreaterThanOrEqual(3);
-      expect(burst.size).toBeLessThanOrEqual(7);
-      expect(burst.life).toBeGreaterThanOrEqual(35);
-      expect(burst.life).toBeLessThanOrEqual(60);
+      expect(burst.size).toBeGreaterThanOrEqual(1.2);
+      expect(burst.size).toBeLessThanOrEqual(2.2);
+      expect(burst.life).toBeGreaterThanOrEqual(14);
+      expect(burst.life).toBeLessThanOrEqual(22);
       expect(burst.maxLife).toBe(burst.life);
     });
 

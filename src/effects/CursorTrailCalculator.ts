@@ -98,7 +98,7 @@ export class CursorTrailCalculator {
   }
 
   /**
-   * Creates a new 3D particle at the cursor position.
+   * Creates a new subtle 3D micro-spark particle at the cursor position.
    */
   public static createParticle(
     x: number,
@@ -106,26 +106,26 @@ export class CursorTrailCalculator {
     color: string,
     isBurst: boolean = false
   ): Particle3D {
-    const speed = isBurst ? Math.random() * 4 + 2 : Math.random() * 1.5 + 0.5;
+    const speed = isBurst ? Math.random() * 1.5 + 0.8 : Math.random() * 0.6 + 0.2;
     const angle = Math.random() * Math.PI * 2;
-    const zSpeed = (Math.random() - 0.5) * (isBurst ? 5 : 2);
-    const maxLife = isBurst ? Math.floor(Math.random() * 25 + 35) : Math.floor(Math.random() * 20 + 25);
+    const zSpeed = (Math.random() - 0.5) * (isBurst ? 1.5 : 0.8);
+    const maxLife = isBurst ? Math.floor(Math.random() * 8 + 14) : Math.floor(Math.random() * 6 + 10);
 
     return {
       id: `p-${Math.random().toString(36).slice(2, 9)}`,
       x,
       y,
-      z: (Math.random() - 0.5) * 40,
+      z: (Math.random() - 0.5) * 20,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,
       vz: zSpeed,
       rotX: Math.random() * Math.PI * 2,
       rotY: Math.random() * Math.PI * 2,
       rotZ: Math.random() * Math.PI * 2,
-      vRotX: (Math.random() - 0.5) * 0.08,
-      vRotY: (Math.random() - 0.5) * 0.08,
-      vRotZ: (Math.random() - 0.5) * 0.08,
-      size: isBurst ? Math.random() * 4 + 3 : Math.random() * 5 + 4,
+      vRotX: (Math.random() - 0.5) * 0.05,
+      vRotY: (Math.random() - 0.5) * 0.05,
+      vRotZ: (Math.random() - 0.5) * 0.05,
+      size: isBurst ? Math.random() * 1.0 + 1.2 : Math.random() * 1.0 + 1.2,
       color,
       alpha: 1,
       life: maxLife,
