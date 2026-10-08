@@ -21,7 +21,7 @@ export const NavbarNavLinks: React.FC<NavbarNavLinksProps> = ({
   ];
 
   return (
-    <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+    <nav className="hidden md:flex items-center gap-1" aria-label={t.nav.mainNavAriaLabel}>
       {navLinks.map((link) => {
         const isActive = activeSection === link.href.slice(1);
         return (

@@ -42,7 +42,7 @@ export const HeroPortraitCard: React.FC = () => {
           />
           <img
             src={`${import.meta.env.BASE_URL}images/oyvind-volden.jpg`}
-            alt="Portrait of Øyvind Volden"
+            alt={t.hero.portraitAlt}
             width={400}
             height={400}
             loading="eager"

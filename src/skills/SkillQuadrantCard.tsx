@@ -15,6 +15,7 @@ export const SkillQuadrantCard: React.FC<SkillQuadrantCardProps> = ({ group }) =
 
   const formatLevel = (level: string) => {
     const lower = level.toLowerCase();
+    if (lower.includes('core')) return t.skills.levels.core;
     if (lower.includes('expert')) return t.skills.levels.expert;
     if (lower.includes('advanc')) return t.skills.levels.advanced;
     if (lower.includes('profic')) return t.skills.levels.proficient;
@@ -74,7 +75,7 @@ export const SkillQuadrantCard: React.FC<SkillQuadrantCardProps> = ({ group }) =
                 : 'bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800/80 dark:border-slate-700/60 dark:text-slate-300'
             }`}
           >
-            <span>{skill.name}</span>
+            <span>{t.skills.skillNames?.[skill.name] ?? skill.name}</span>
             {skill.level && (
               <span className="text-[10px] text-slate-500 dark:text-slate-400 font-normal">
                 ({formatLevel(skill.level)})

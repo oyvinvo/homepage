@@ -11,9 +11,11 @@ import { ToastNotification } from './shared/ToastNotification';
 import { CursorTrail3D } from './effects/CursorTrail3D';
 import { usePortfolioStore } from './shared/store';
 import { LanguageCalculator } from './i18n/LanguageCalculator';
+import { useTranslation } from './i18n/useTranslation';
 
 export const App: React.FC = () => {
   const { theme, language, setActiveSection } = usePortfolioStore();
+  const { t } = useTranslation();
 
   // Sync theme with document.documentElement and color-scheme
   useEffect(() => {
@@ -29,12 +31,17 @@ export const App: React.FC = () => {
     }
   }, [theme]);
 
-  // Sync language with document.documentElement.lang
+  // Sync language with document.documentElement.lang, document.title, and meta description
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = LanguageCalculator.getHtmlLang(language);
+      document.title = t.documentTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', t.metaDescription);
+      }
     }
-  }, [language]);
+  }, [language, t.documentTitle, t.metaDescription]);
 
   // Active section scroll tracking with bottom-of-page contact guarantee
   useEffect(() => {
@@ -86,10 +93,10 @@ export const App: React.FC = () => {
 
       <footer className="py-12 border-t border-slate-200 dark:border-slate-900/80 bg-slate-100 dark:bg-[#040609] text-center text-xs text-slate-600 dark:text-slate-400 space-y-2 transition-colors">
         <div>
-          © {new Date().getFullYear()} Øyvind Volden. Lead Architect & Head of Architect Group at KulturIT.
+          {t.footer.copyright.replace('{year}', String(new Date().getFullYear()))}
         </div>
         <div>
-          Built with React 18, TypeScript, and modern web standards. Fully accessible • WCAG 2.1/2.2 AA.
+          {t.footer.builtWith}
         </div>
       </footer>
 

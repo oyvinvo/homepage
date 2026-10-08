@@ -1,6 +1,9 @@
 import { PortfolioContentDictionary } from '../types';
 
 export const noDictionary: PortfolioContentDictionary = {
+  documentTitle: 'Øyvind Volden | Sjefsarkitekt & Faggruppeleder Arkitektur - KulturIT',
+  metaDescription:
+    'Portefølje for Øyvind Volden - Sjefsarkitekt og faggruppeleder for arkitektur hos KulturIT AS. Over 15 års erfaring med samfunnskritiske distribuerte systemer, domenedrevet design (DDD) og moderne skyløsninger.',
   nav: {
     home: 'Hjem',
     leadership: 'Lederskap',
@@ -11,6 +14,14 @@ export const noDictionary: PortfolioContentDictionary = {
     openCv: 'Åpne CV',
     toggleMenu: 'Åpne navigasjonsmeny',
     closeMenu: 'Lukk navigasjonsmeny',
+    brandRole: 'Sjefsarkitekt',
+    mainNavAriaLabel: 'Hovednavigasjon',
+    skipToContent: 'Hopp til hovedinnhold',
+    themeDark: 'Mørk',
+    themeLight: 'Lys',
+    themeDarkTitle: 'Bytt til lyst fargetema',
+    themeLightTitle: 'Bytt til mørkt tema',
+    languageLabel: 'Språk',
   },
   hero: {
     roleBadge: 'Sjefsarkitekt & Faggruppeleder',
@@ -26,6 +37,8 @@ export const noDictionary: PortfolioContentDictionary = {
     experience: 'Erfaring',
     openCv: 'Åpne CV',
     contact: 'Kontakt',
+    portraitAlt: 'Portrett av Øyvind Volden',
+    experiencePeriod: 'KulturIT (2018 – nåværende)',
     metrics: {
       experience: {
         value: '15+',
@@ -181,12 +194,25 @@ export const noDictionary: PortfolioContentDictionary = {
         ],
       },
     },
+    locations: {
+      kulturit: 'Lillehammer, Norge',
+      volden: 'Lillehammer, Norge',
+      autosys: 'Oslo / Moss, Norge',
+      regelforvaltning: 'Oslo, Norge',
+      ciber: 'Oslo, Norge',
+      noark5: 'Oslo / Moss, Norge',
+      mohive: 'Trondheim, Norge',
+    },
+    badges: {
+      kulturit: 'Nåværende lederrolle',
+      volden: 'Selvstendig praksis',
+    },
     education: {
       badge: 'Akademisk fundament & informatikk',
       degree: 'Cand.Mag. / Hovedfagskurs i Informatikk',
       institution: 'Universitetet i Oslo (UiO)',
       subLocation: 'Institutt for informatikk (IFI) • Oslo, Norge',
-      period: '2004–2008',
+      period: '2004 – 2008',
       description: 'Formende universitetsutdannelse ved Norges fremste informatikkfakultet (IFI), med fokus på objektorientert programvareutvikling, distribuerte algoritmer, relasjonsdatabaser, datastrukturer og datamaskinarkitektur.',
       highlights: [
         'Informatikk (IFI)',
@@ -461,12 +487,58 @@ export const noDictionary: PortfolioContentDictionary = {
       visitSystem: 'Besøk løsningen',
       exploreCode: 'Se kode',
     },
+    searchAriaLabel: 'Søk i arkitekturprosjekter',
+    externalLinkAriaLabel: '{title} ekstern lenke (åpnes i nytt vindu)',
+    links: {
+      'Live Platform': 'Åpne løsning',
+      'Live 3D Rooms': 'Åpne 3D-rom',
+      'Live 360 Experiences': 'Åpne 360°-opplevelser',
+      'Live Scrollytellings': 'Åpne scrollytellinger',
+      'eKultur Platform': 'eKultur-plattformen',
+      'KulturIT AI Overview': 'KulturIT AI-oversikt',
+      'Statens vegvesen': 'Statens vegvesen',
+      'Nasjonalbiblioteket': 'Nasjonalbiblioteket',
+      'KulturIT': 'KulturIT',
+      'VirtueltMuseum': 'VirtueltMuseum',
+      'login.ekultur.org': 'login.ekultur.org',
+    },
+    techTags: {
+      '3D Room Curation': '3D-romkuratering',
+      '360 Panoramic Curation': '360°-panoramakuratering',
+      'Scrollytelling Curation': 'Scrollytelling-kuratering',
+      'Quiz Game Engine': 'Quiz-spillmotor',
+      'Cookie Consent Management': 'Samtykkestyring (GDPR)',
+      'Multi-Tenant Microservices': 'Flerbruker-mikrotjenester',
+      'Modular Monorepo': 'Modulært monorepo',
+      'Central Authentication': 'Sentral autentisering',
+      'Digital Preservation': 'Digital bevaring',
+      'Computer Vision OCR': 'Datasyn & OCR',
+      'Automated Rule Evaluation': 'Automatisert regeltolking',
+      'Enterprise Integration': 'Virksomhetsintegrasjon',
+      'Deterministic Rule Engine': 'Deterministisk regelmotor',
+    },
   },
   skills: {
     sectionBadge: 'Teknologisk Verktøykasse',
     title: 'Kjernekompetanse & Metodikk',
     subtitle: 'En strukturert oversikt over teknologier, arkitekturmønstre og verktøy jeg behersker og anvender i produksjon.',
     quadrants: {
+      'architecture-governance': {
+        title: 'Arkitektur & Metodikk',
+        description: 'Strategisk systemdesign, arkitekturstyring, domenemodellering og ledelse av tekniske team.',
+      },
+      'languages-frameworks': {
+        title: 'Språk & Rammeverk',
+        description: 'Moderne programmeringsspråk og rammeverk for robuste backend- og frontend-systemer.',
+      },
+      'cloud-devops': {
+        title: 'Sky, Plattformer & DevOps',
+        description: 'Containerisering, orkestrering, infrastruktur som kode og automatiserte pipelines.',
+      },
+      'data-messaging': {
+        title: 'Data, Søk & Meldinger',
+        description: 'Meldingskøer, søkemotorer, databaser og hendelsesstrømmer for distribuerte miljøer.',
+      },
       architecture: {
         title: 'Arkitektur & Metodikk',
         description: 'Strategisk systemdesign, arkitekturstyring, domenemodellering og ledelse av tekniske team.',
@@ -485,9 +557,38 @@ export const noDictionary: PortfolioContentDictionary = {
       },
     },
     levels: {
+      core: 'Kjerne',
       expert: 'Ekspert',
       advanced: 'Avansert',
       proficient: 'Kompetent',
+    },
+    skillNames: {
+      'Clean Code & Software Readability': 'Ren kode & lesbarhet',
+      'Domain-Driven Design (DDD)': 'Domenedrevet design (DDD)',
+      'Architect Group Leadership': 'Ledelse av arkitekturgruppe',
+      'Architecture Decision Records (ADR)': 'Architecture Decision Records (ADR)',
+      'Central SSO & OAuth2/OIDC Architecture': 'Sentral SSO & OAuth2/OIDC-arkitektur',
+      'GDPR & In-House Cookie Consent Architecture': 'GDPR & egenutviklet samtykkeløsning',
+      'Microfrontends Architecture': 'Mikrofrontend-arkitektur',
+      'Multi-Tenant Ingress & RBAC Authorization': 'Flerbruker-ingress & RBAC-tilgangsstyring',
+      'Refactoring & Software Craftsmanship': 'Refaktorering & programvarehåndverk',
+      'Engineering Mentorship & Guild Governance': 'Mentorordning & faggruppestyring',
+      'C4 Architectural Modeling & RFCs': 'C4-arkitekturmodellering & RFC-er',
+      'Virtual 3D Rooms & 360° Spherical Panoramas': 'Virtuelle 3D-rom & 360°-panoramatallinger',
+      'Material UI (MUI v6/v7) & Design Systems': 'Material UI & designsystemer',
+      'Docker & Multi-Stage Builds': 'Docker & flertrinnsbygg',
+      'Turborepo & npm Workspaces': 'Turborepo & npm-arbeidsområder',
+      'uv & Poetry Package Managers': 'uv & Poetry pakkehåndtering',
+      'GitHub Actions & Release Please': 'GitHub Actions & Release Please',
+      'Linux / Alpine Hardening': 'Linux / Alpine-herding',
+      'PostgreSQL & Alembic Migrations': 'PostgreSQL & Alembic-migreringer',
+      'PostgreSQL Custom Message Queue': 'Egenutviklet PostgreSQL-meldingskø',
+      'E-ARK Archival Information Packages (AIP)': 'E-ARK arkivinformasjonspakker (AIP)',
+      'OpenTelemetry (OTLP) Tracing': 'OpenTelemetry (OTLP) distribuert sporing',
+      'Google Cloud Vision API (OCR)': 'Google Cloud Vision API (OCR)',
+      'Apache Solr & Full-Text Search': 'Apache Solr & fulltekstsøk',
+      'Prometheus & Sentry Observability': 'Prometheus & Sentry observerbarhet',
+      'Oracle Database & Enterprise Archives': 'Oracle Database & virksomhetsarkiv',
     },
   },
   contact: {
@@ -507,6 +608,7 @@ export const noDictionary: PortfolioContentDictionary = {
     socialCardDesc: 'Koble med meg på LinkedIn eller utforsk mine open source-bidrag på GitHub.',
     connectLinkedIn: 'LinkedIn-profil',
     exploreGitHub: 'GitHub-profil',
+    dismissToastAriaLabel: 'Lukk varsel',
   },
   manifest: {
     modalTitle: 'Curriculum Vitae',
@@ -534,5 +636,9 @@ export const noDictionary: PortfolioContentDictionary = {
     educationPeriod: '2004 – 2008',
     educationDescription: 'Fireårig grad med fokus på distribuerte systemer, programvarearkitektur, algoritmer og databaser.',
     printNotice: 'Generert fra oyvind.volden.family • 1-klikks PDF/utskriftsvennlig versjon',
+  },
+  footer: {
+    copyright: '© {year} Øyvind Volden. Sjefsarkitekt & Faggruppeleder Arkitektur hos KulturIT.',
+    builtWith: 'Bygget med React 18, TypeScript og moderne webstandarder. Universelt utformet • WCAG 2.1/2.2 AA.',
   },
 };

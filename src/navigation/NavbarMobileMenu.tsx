@@ -64,7 +64,7 @@ export const NavbarMobileMenu: React.FC<NavbarMobileMenuProps> = ({
           <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
             <div className="flex items-center justify-between py-1">
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Språk / Language
+                {t.nav.languageLabel}
               </span>
               <LanguageToggle />
             </div>

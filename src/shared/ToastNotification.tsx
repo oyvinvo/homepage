@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react';
 import { usePortfolioStore } from './store';
+import { useTranslation } from '../i18n/useTranslation';
 
 export const ToastNotification: React.FC = () => {
   const { toast, setToast } = usePortfolioStore();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!toast) return;
@@ -35,7 +37,7 @@ export const ToastNotification: React.FC = () => {
         type="button"
         onClick={() => setToast(null)}
         className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-        aria-label="Dismiss notification"
+        aria-label={t.contact.dismissToastAriaLabel}
       >
         <X className="w-4 h-4" aria-hidden="true" />
       </button>

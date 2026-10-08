@@ -21,7 +21,7 @@ export const ProjectSearchBar: React.FC<ProjectSearchBarProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={t.projects.searchPlaceholder}
-        aria-label="Search architecture projects"
+        aria-label={t.projects.searchAriaLabel}
         className="w-full pl-9 pr-3 py-2 rounded-lg text-xs bg-white/95 dark:bg-slate-900 border border-blue-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors shadow-sm"
       />
     </div>

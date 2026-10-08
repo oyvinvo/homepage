@@ -19,7 +19,7 @@ export const CVManifestSkills: React.FC = () => {
             <div key={grp.id} className="space-y-1.5">
               <h4 className="text-xs font-bold text-white print:text-black">{title}</h4>
               <p className="text-xs text-slate-300 print:text-slate-700">
-                {grp.skills.map((s) => s.name).join(', ')}
+                {grp.skills.map((s) => t.skills.skillNames?.[s.name] ?? s.name).join(', ')}
               </p>
             </div>
           );

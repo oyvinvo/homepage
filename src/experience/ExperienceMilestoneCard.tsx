@@ -22,6 +22,8 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
   const period = localized?.period ?? milestone.period;
   const summary = localized?.summary ?? milestone.summary;
   const highlights = localized?.highlights ?? milestone.architectureHighlights;
+  const badge = t.experience.badges?.[milestone.id] ?? milestone.badge;
+  const location = t.experience.locations?.[milestone.id] ?? milestone.location;
 
   return (
     <article className="p-6 sm:p-8 rounded-xl bg-white/95 dark:bg-slate-900/50 border border-violet-200/70 dark:border-slate-800 hover:border-violet-300 dark:hover:border-slate-700 transition-all shadow-sm">
@@ -31,9 +33,9 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
             <span className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
               {role}
             </span>
-            {milestone.badge && (
+            {badge && (
               <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-100 text-violet-800 border border-violet-300 dark:bg-cyan-950 dark:text-cyan-300 dark:border-cyan-800/60">
-                {milestone.badge}
+                {badge}
               </span>
             )}
           </div>
@@ -49,7 +51,7 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
             </span>
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" aria-hidden="true" />
-              {milestone.location}
+              {location}
             </span>
           </div>
         </div>

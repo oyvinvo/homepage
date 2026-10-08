@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { ProjectLink } from '../shared/types';
+import { useTranslation } from '../i18n/useTranslation';
 
 interface ProjectCardHeaderProps {
   client: string;
@@ -15,6 +16,8 @@ export const ProjectCardHeader: React.FC<ProjectCardHeaderProps> = ({
   title,
   links,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex items-start justify-between gap-3">
       <div className="space-y-1">
@@ -31,7 +34,7 @@ export const ProjectCardHeader: React.FC<ProjectCardHeaderProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
-          aria-label={`${title} external link (opens in new window)`}
+          aria-label={t.projects.externalLinkAriaLabel.replace('{title}', title)}
         >
           <ExternalLink className="w-4 h-4" aria-hidden="true" />
         </a>

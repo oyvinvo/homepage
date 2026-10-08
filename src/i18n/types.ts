@@ -18,6 +18,14 @@ export interface NavigationTranslation {
   openCv: string;
   toggleMenu: string;
   closeMenu: string;
+  brandRole: string;
+  mainNavAriaLabel: string;
+  skipToContent: string;
+  themeDark: string;
+  themeLight: string;
+  themeDarkTitle: string;
+  themeLightTitle: string;
+  languageLabel: string;
 }
 
 export interface MetricItemTranslation {
@@ -40,6 +48,8 @@ export interface HeroTranslation {
   experience: string;
   openCv: string;
   contact: string;
+  portraitAlt: string;
+  experiencePeriod: string;
   metrics: {
     experience: MetricItemTranslation;
     rules: MetricItemTranslation;
@@ -98,6 +108,8 @@ export interface ExperienceTranslation {
     noark5: MilestoneTranslation;
     mohive: MilestoneTranslation;
   };
+  locations?: Record<string, string>;
+  badges?: Record<string, string>;
   education: {
     badge: string;
     degree: string;
@@ -144,6 +156,10 @@ export interface ProjectsTranslation {
     visitSystem: string;
     exploreCode: string;
   };
+  searchAriaLabel: string;
+  externalLinkAriaLabel: string;
+  links?: Record<string, string>;
+  techTags?: Record<string, string>;
 }
 
 export interface SkillCategoryTranslation {
@@ -155,17 +171,14 @@ export interface SkillsTranslation {
   sectionBadge: string;
   title: string;
   subtitle: string;
-  quadrants: {
-    architecture: SkillCategoryTranslation;
-    languages: SkillCategoryTranslation;
-    cloud: SkillCategoryTranslation;
-    data: SkillCategoryTranslation;
-  };
+  quadrants: Record<string, SkillCategoryTranslation>;
   levels: {
+    core: string;
     expert: string;
     advanced: string;
     proficient: string;
   };
+  skillNames?: Record<string, string>;
 }
 
 export interface ContactTranslation {
@@ -185,6 +198,7 @@ export interface ContactTranslation {
   socialCardDesc: string;
   connectLinkedIn: string;
   exploreGitHub: string;
+  dismissToastAriaLabel: string;
 }
 
 export interface CvManifestTranslation {
@@ -211,7 +225,14 @@ export interface CvManifestTranslation {
   printNotice: string;
 }
 
+export interface FooterTranslation {
+  copyright: string;
+  builtWith: string;
+}
+
 export interface PortfolioContentDictionary {
+  documentTitle: string;
+  metaDescription: string;
   nav: NavigationTranslation;
   hero: HeroTranslation;
   leadership: LeadershipTranslation;
@@ -220,4 +241,5 @@ export interface PortfolioContentDictionary {
   skills: SkillsTranslation;
   contact: ContactTranslation;
   manifest: CvManifestTranslation;
+  footer: FooterTranslation;
 }

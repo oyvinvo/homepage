@@ -10,7 +10,7 @@ export const HeroBio: React.FC = () => {
       {/* Leadership Status Badge */}
       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-100/90 dark:bg-cyan-950/70 border border-cyan-300 dark:border-cyan-800/60 text-cyan-900 dark:text-cyan-300 text-xs font-semibold shadow-sm">
         <ShieldCheck className="w-3.5 h-3.5 text-cyan-700 dark:text-cyan-400" aria-hidden="true" />
-        <span>{t.hero.roleBadge} • KulturIT (2018–Present)</span>
+        <span>{t.hero.roleBadge} • {t.hero.experiencePeriod}</span>
       </div>
 
       {/* Executive Headline & Bio */}

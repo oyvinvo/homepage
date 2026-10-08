@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from '../i18n/useTranslation';
 
 interface NavbarBrandProps {
   onNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }
 
 export const NavbarBrand: React.FC<NavbarBrandProps> = ({ onNavClick }) => {
+  const { t } = useTranslation();
+
   return (
     <a
       href="#hero"
@@ -16,7 +19,7 @@ export const NavbarBrand: React.FC<NavbarBrandProps> = ({ onNavClick }) => {
       </span>
       <div className="flex flex-col">
         <span className="text-base leading-tight">Øyvind Volden</span>
-        <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">Lead Architect</span>
+        <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">{t.nav.brandRole}</span>
       </div>
     </a>
   );

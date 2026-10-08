@@ -1,6 +1,9 @@
 import { PortfolioContentDictionary } from '../types';
 
 export const enDictionary: PortfolioContentDictionary = {
+  documentTitle: 'Øyvind Volden | Lead Architect & Head of Architect Group - KulturIT',
+  metaDescription:
+    'Portfolio of Øyvind Volden - Lead Architect & Head of Architect Group at KulturIT AS. Over 15 years architecting resilient distributed systems, Domain-Driven Design (DDD), and modern web platforms.',
   nav: {
     home: 'Home',
     leadership: 'Leadership',
@@ -11,6 +14,14 @@ export const enDictionary: PortfolioContentDictionary = {
     openCv: 'View full CV / Resume',
     toggleMenu: 'Toggle navigation menu',
     closeMenu: 'Close navigation menu',
+    brandRole: 'Lead Architect',
+    mainNavAriaLabel: 'Main Navigation',
+    skipToContent: 'Skip to main content',
+    themeDark: 'Dark',
+    themeLight: 'Light',
+    themeDarkTitle: 'Switch to colorful light theme',
+    themeLightTitle: 'Switch to rich dark theme',
+    languageLabel: 'Language',
   },
   hero: {
     roleBadge: 'Lead Architect & Head of Architecture Group',
@@ -26,6 +37,8 @@ export const enDictionary: PortfolioContentDictionary = {
     experience: 'Experience',
     openCv: 'Open CV',
     contact: 'Contact',
+    portraitAlt: 'Portrait of Øyvind Volden',
+    experiencePeriod: 'KulturIT (2018–Present)',
     metrics: {
       experience: {
         value: '15+',
@@ -181,12 +194,25 @@ export const enDictionary: PortfolioContentDictionary = {
         ],
       },
     },
+    locations: {
+      kulturit: 'Lillehammer, Norway',
+      volden: 'Lillehammer, Norway',
+      autosys: 'Oslo / Moss, Norway',
+      regelforvaltning: 'Oslo, Norway',
+      ciber: 'Oslo, Norway',
+      noark5: 'Oslo / Moss, Norway',
+      mohive: 'Trondheim, Norway',
+    },
+    badges: {
+      kulturit: 'Current Leadership',
+      volden: 'Independent Practice',
+    },
     education: {
       badge: 'Academic Foundation & Computer Science',
       degree: "Bachelor's Degree & Graduate Coursework (Hovedfagskurs) in Informatics",
       institution: 'University of Oslo (UiO)',
       subLocation: 'Institutt for informatikk (IFI) • Oslo, Norway',
-      period: '2004–2008',
+      period: '2004 – 2008',
       description: "Formative university education at Norway's premier computer science faculty (IFI), focusing on object-oriented software engineering, distributed algorithms, relational databases, data structures, and computer architecture.",
       highlights: [
         'Informatics (IFI)',
@@ -461,12 +487,58 @@ export const enDictionary: PortfolioContentDictionary = {
       visitSystem: 'Visit System',
       exploreCode: 'Explore Code',
     },
+    searchAriaLabel: 'Search architecture projects',
+    externalLinkAriaLabel: '{title} external link (opens in new window)',
+    links: {
+      'Live Platform': 'Live Platform',
+      'Live 3D Rooms': 'Live 3D Rooms',
+      'Live 360 Experiences': 'Live 360 Experiences',
+      'Live Scrollytellings': 'Live Scrollytellings',
+      'eKultur Platform': 'eKultur Platform',
+      'KulturIT AI Overview': 'KulturIT AI Overview',
+      'Statens vegvesen': 'Statens vegvesen',
+      'Nasjonalbiblioteket': 'National Library of Norway',
+      'KulturIT': 'KulturIT',
+      'VirtueltMuseum': 'VirtueltMuseum',
+      'login.ekultur.org': 'login.ekultur.org',
+    },
+    techTags: {
+      '3D Room Curation': '3D Room Curation',
+      '360 Panoramic Curation': '360 Panoramic Curation',
+      'Scrollytelling Curation': 'Scrollytelling Curation',
+      'Quiz Game Engine': 'Quiz Game Engine',
+      'Cookie Consent Management': 'Cookie Consent Management',
+      'Multi-Tenant Microservices': 'Multi-Tenant Microservices',
+      'Modular Monorepo': 'Modular Monorepo',
+      'Central Authentication': 'Central Authentication',
+      'Digital Preservation': 'Digital Preservation',
+      'Computer Vision OCR': 'Computer Vision OCR',
+      'Automated Rule Evaluation': 'Automated Rule Evaluation',
+      'Enterprise Integration': 'Enterprise Integration',
+      'Deterministic Rule Engine': 'Deterministic Rule Engine',
+    },
   },
   skills: {
     sectionBadge: 'Technology Arsenal',
     title: 'Core Competencies & Methodology',
     subtitle: 'A structured matrix of architectural disciplines, programming paradigms, and infrastructure platforms applied in production.',
     quadrants: {
+      'architecture-governance': {
+        title: 'Architecture & Strategy',
+        description: 'Strategic system design, architecture governance, Domain-Driven Design, and technical team leadership.',
+      },
+      'languages-frameworks': {
+        title: 'Languages & Frameworks',
+        description: 'Modern type-safe programming languages and robust frameworks for enterprise backend and frontend systems.',
+      },
+      'cloud-devops': {
+        title: 'Cloud, Platforms & DevOps',
+        description: 'Container orchestration, infrastructure as code, automated delivery pipelines, and cloud telemetry.',
+      },
+      'data-messaging': {
+        title: 'Data, Search & Messaging',
+        description: 'Enterprise message brokers, search engines, relational persistence, and distributed event streams.',
+      },
       architecture: {
         title: 'Architecture & Strategy',
         description: 'Strategic system design, architecture governance, Domain-Driven Design, and technical team leadership.',
@@ -485,9 +557,38 @@ export const enDictionary: PortfolioContentDictionary = {
       },
     },
     levels: {
+      core: 'Core',
       expert: 'Expert',
       advanced: 'Advanced',
       proficient: 'Proficient',
+    },
+    skillNames: {
+      'Clean Code & Software Readability': 'Clean Code & Software Readability',
+      'Domain-Driven Design (DDD)': 'Domain-Driven Design (DDD)',
+      'Architect Group Leadership': 'Architect Group Leadership',
+      'Architecture Decision Records (ADR)': 'Architecture Decision Records (ADR)',
+      'Central SSO & OAuth2/OIDC Architecture': 'Central SSO & OAuth2/OIDC Architecture',
+      'GDPR & In-House Cookie Consent Architecture': 'GDPR & In-House Cookie Consent Architecture',
+      'Microfrontends Architecture': 'Microfrontends Architecture',
+      'Multi-Tenant Ingress & RBAC Authorization': 'Multi-Tenant Ingress & RBAC Authorization',
+      'Refactoring & Software Craftsmanship': 'Refactoring & Software Craftsmanship',
+      'Engineering Mentorship & Guild Governance': 'Engineering Mentorship & Guild Governance',
+      'C4 Architectural Modeling & RFCs': 'C4 Architectural Modeling & RFCs',
+      'Virtual 3D Rooms & 360° Spherical Panoramas': 'Virtual 3D Rooms & 360° Spherical Panoramas',
+      'Material UI (MUI v6/v7) & Design Systems': 'Material UI (MUI v6/v7) & Design Systems',
+      'Docker & Multi-Stage Builds': 'Docker & Multi-Stage Builds',
+      'Turborepo & npm Workspaces': 'Turborepo & npm Workspaces',
+      'uv & Poetry Package Managers': 'uv & Poetry Package Managers',
+      'GitHub Actions & Release Please': 'GitHub Actions & Release Please',
+      'Linux / Alpine Hardening': 'Linux / Alpine Hardening',
+      'PostgreSQL & Alembic Migrations': 'PostgreSQL & Alembic Migrations',
+      'PostgreSQL Custom Message Queue': 'PostgreSQL Custom Message Queue',
+      'E-ARK Archival Information Packages (AIP)': 'E-ARK Archival Information Packages (AIP)',
+      'OpenTelemetry (OTLP) Tracing': 'OpenTelemetry (OTLP) Tracing',
+      'Google Cloud Vision API (OCR)': 'Google Cloud Vision API (OCR)',
+      'Apache Solr & Full-Text Search': 'Apache Solr & Full-Text Search',
+      'Prometheus & Sentry Observability': 'Prometheus & Sentry Observability',
+      'Oracle Database & Enterprise Archives': 'Oracle Database & Enterprise Archives',
     },
   },
   contact: {
@@ -507,6 +608,7 @@ export const enDictionary: PortfolioContentDictionary = {
     socialCardDesc: 'Connect on LinkedIn or explore open-source engineering repositories on GitHub.',
     connectLinkedIn: 'LinkedIn Profile',
     exploreGitHub: 'GitHub Profile',
+    dismissToastAriaLabel: 'Dismiss notification',
   },
   manifest: {
     modalTitle: 'Curriculum Vitae • Executive Summary',
@@ -534,5 +636,9 @@ export const enDictionary: PortfolioContentDictionary = {
     educationPeriod: '2004 – 2008',
     educationDescription: 'Four-year university degree focusing on distributed systems, software architecture, algorithms, and relational databases.',
     printNotice: 'Exported from oyvind.volden.family • 1-click printer and PDF-friendly edition',
+  },
+  footer: {
+    copyright: '© {year} Øyvind Volden. Lead Architect & Head of Architect Group at KulturIT.',
+    builtWith: 'Built with React 18, TypeScript, and modern web standards. Fully accessible • WCAG 2.1/2.2 AA.',
   },
 };
