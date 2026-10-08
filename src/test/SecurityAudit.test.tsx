@@ -4,6 +4,9 @@ import { App } from '../App';
 import { ClipboardActionCalculator } from '../shared/ClipboardActionCalculator';
 import { ProjectFilterCalculator } from '../shared/ProjectFilterCalculator';
 import { projectsCatalog } from '../projects/projectsCatalog';
+import { LanguageCalculator } from '../i18n/LanguageCalculator';
+import { Language } from '../i18n/types';
+import { noDictionary, enDictionary } from '../i18n/dictionaries/index';
 
 describe('KulturIT Security Expert Audit - Modern Minimalist Zero-3D Architecture', () => {
   describe('1. Outbound External Link Security (Tabnabbing & Referrer Leakage)', () => {
@@ -88,6 +91,61 @@ describe('KulturIT Security Expert Audit - Modern Minimalist Zero-3D Architectur
       const { container } = render(<App />);
       const mailtoLinks = container.querySelectorAll('a[href^="mailto:"]');
       expect(mailtoLinks).toHaveLength(0);
+    });
+  });
+
+  describe('4. i18n & Client-Side Localization Security (Feature 009)', () => {
+    it('resists localStorage tampering, prototype pollution, and malicious injection payloads', () => {
+      const maliciousPayloads = [
+        '<script>alert("XSS")</script>',
+        '"><img src=x onerror=alert(1)>',
+        '__proto__',
+        'constructor',
+        'prototype',
+        '../../etc/passwd',
+        'DROP TABLE users;--',
+        'undefined',
+        'null',
+        '[object Object]',
+        '{"language":"en"}',
+      ];
+
+      maliciousPayloads.forEach((payload) => {
+        const resolved = LanguageCalculator.resolveInitialLanguage(payload, null, 'no');
+        expect(resolved).toBe('no');
+      });
+    });
+
+    it('guarantees HTML lang attribute is strictly constrained to safe BCP-47 identifiers', () => {
+      expect(LanguageCalculator.getHtmlLang('no')).toBe('no');
+      expect(LanguageCalculator.getHtmlLang('en')).toBe('en');
+      // Type safety fallback
+      expect(LanguageCalculator.getHtmlLang('invalid' as unknown as Language)).toBe('no');
+    });
+
+    it('scans Norwegian and English translation dictionaries for zero hardcoded secrets', () => {
+      const checkSecrets = (obj: unknown, path = ''): void => {
+        if (typeof obj === 'string') {
+          const secretPatterns = [
+            /bearer\s+[a-zA-Z0-9_.-]{16,}/i,
+            /api[_-]?key/i,
+            /ghp_[a-zA-Z0-9]{20,}/,
+            /AKIA[0-9A-Z]{16}/,
+            /-----BEGIN [A-Z]+ PRIVATE KEY-----/,
+            /password\s*[:=]\s*['"][^'"]+['"]/i,
+          ];
+          secretPatterns.forEach((pattern) => {
+            expect(pattern.test(obj), `Potential secret match in dictionary at path "${path}": ${obj}`).toBe(false);
+          });
+        } else if (typeof obj === 'object' && obj !== null) {
+          for (const [key, value] of Object.entries(obj)) {
+            checkSecrets(value, path ? `${path}.${key}` : key);
+          }
+        }
+      };
+
+      checkSecrets(noDictionary, 'no');
+      checkSecrets(enDictionary, 'en');
     });
   });
 });

@@ -5,12 +5,35 @@ import { ProjectCardHeader } from './ProjectCardHeader';
 import { ProjectCardChallengeSolution } from './ProjectCardChallengeSolution';
 import { ProjectCardMetrics } from './ProjectCardMetrics';
 import { ProjectCardTechStack } from './ProjectCardTechStack';
+import { useTranslation } from '../i18n/useTranslation';
+
+const CASE_STUDY_KEY_MAP: Record<string, 'ekulturHandover' | 'virtueltMuseum' | 'ekulturCoreGateway' | 'ekulturAiVision' | 'autosysKsak' | 'regelforvaltningEngine' | 'bekymringsmestring'> = {
+  'ekultur-handover': 'ekulturHandover',
+  'virtuelt-museum': 'virtueltMuseum',
+  'ekultur-core-gateway': 'ekulturCoreGateway',
+  'ekultur-ai-vision': 'ekulturAiVision',
+  'autosys-ksak': 'autosysKsak',
+  'regelforvaltning-engine': 'regelforvaltningEngine',
+  'bekymringsmestring': 'bekymringsmestring',
+};
 
 interface ProjectCardProps {
   project: ProjectCaseStudy;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const { t } = useTranslation();
+  const caseKey = CASE_STUDY_KEY_MAP[project.id];
+  const localized = caseKey ? t.projects.caseStudies[caseKey] : undefined;
+
+  const title = localized?.title ?? project.title;
+  const client = localized?.client ?? project.client;
+  const period = localized?.period ?? project.period;
+  const summary = localized?.summary ?? project.summary;
+  const challenge = localized?.challenge ?? project.challenge;
+  const architectureSolution = localized?.architectureSolution ?? project.architectureSolution;
+  const metrics = localized?.metrics ?? project.metrics;
+
   const {
     cardRef,
     style,
@@ -48,22 +71,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       <div className="relative z-10">
         <ProjectCardHeader
-          client={project.client}
-          period={project.period}
-          title={project.title}
+          client={client}
+          period={period}
+          title={title}
           links={project.links}
         />
 
         <p className="mt-3.5 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-          {project.summary}
+          {summary}
         </p>
 
         <ProjectCardChallengeSolution
-          challenge={project.challenge}
-          architectureSolution={project.architectureSolution}
+          challenge={challenge}
+          architectureSolution={architectureSolution}
         />
 
-        <ProjectCardMetrics metrics={project.metrics} />
+        <ProjectCardMetrics metrics={metrics} />
       </div>
 
       <ProjectCardTechStack

@@ -59,8 +59,11 @@ export interface ToastMessage {
   type: 'success' | 'info' | 'error';
 }
 
+import { Language } from '../i18n/types';
+
 export interface PortfolioState {
   theme: 'light' | 'dark';
+  language: Language;
   activeSection: string;
   selectedCategory: ProjectCategory;
   searchQuery: string;
@@ -69,6 +72,8 @@ export interface PortfolioState {
   expandedMilestoneId: string | null;
   setTheme: (theme: 'light' | 'dark') => void;
   toggleTheme: () => void;
+  setLanguage: (language: Language) => void;
+  toggleLanguage: () => void;
   setActiveSection: (section: string) => void;
   setSelectedCategory: (category: ProjectCategory) => void;
   setSearchQuery: (query: string) => void;

@@ -1,17 +1,20 @@
 import React from 'react';
 import { ExternalLink, Github, Linkedin } from 'lucide-react';
 import { ContactCard } from './ContactCard';
+import { useTranslation } from '../i18n/useTranslation';
 
 export const ContactSocialCard: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <ContactCard>
       <div className="space-y-2">
         <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/60 flex items-center justify-center text-blue-700 dark:text-blue-400">
           <Linkedin className="w-5 h-5" aria-hidden="true" />
         </div>
-        <h3 className="text-lg font-bold text-slate-950 dark:text-white">Professional Networks</h3>
+        <h3 className="text-lg font-bold text-slate-950 dark:text-white">{t.contact.socialCardTitle}</h3>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-          Connect on LinkedIn or inspect open-source repositories and contributions on GitHub.
+          {t.contact.socialCardDesc}
         </p>
       </div>
 
@@ -24,7 +27,7 @@ export const ContactSocialCard: React.FC = () => {
         >
           <span className="flex items-center gap-2">
             <Linkedin className="w-4 h-4 text-cyan-600 dark:text-cyan-400" aria-hidden="true" />
-            <span>LinkedIn Profile</span>
+            <span>{t.contact.connectLinkedIn}</span>
           </span>
           <ExternalLink className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" aria-hidden="true" />
         </a>
@@ -37,7 +40,7 @@ export const ContactSocialCard: React.FC = () => {
         >
           <span className="flex items-center gap-2">
             <Github className="w-4 h-4 text-slate-800 dark:text-cyan-400" aria-hidden="true" />
-            <span>GitHub (@oyvinvo)</span>
+            <span>{t.contact.exploreGitHub}</span>
           </span>
           <ExternalLink className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" aria-hidden="true" />
         </a>

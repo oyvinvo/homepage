@@ -1,30 +1,52 @@
 import React from 'react';
 import { projectsCatalog } from '../projects/projectsCatalog';
+import { useTranslation } from '../i18n/useTranslation';
+
+const CASE_STUDY_KEY_MAP: Record<string, 'ekulturHandover' | 'virtueltMuseum' | 'ekulturCoreGateway' | 'ekulturAiVision' | 'autosysKsak' | 'regelforvaltningEngine' | 'bekymringsmestring'> = {
+  'ekultur-handover': 'ekulturHandover',
+  'virtuelt-museum': 'virtueltMuseum',
+  'ekultur-core-gateway': 'ekulturCoreGateway',
+  'ekultur-ai-vision': 'ekulturAiVision',
+  'autosys-ksak': 'autosysKsak',
+  'regelforvaltning-engine': 'regelforvaltningEngine',
+  'bekymringsmestring': 'bekymringsmestring',
+};
 
 export const CVManifestProjects: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="space-y-4">
       <h3 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider print:text-slate-800 border-b border-slate-800/80 pb-2 print:border-black">
-        Key Architectural Case Studies
+        {t.manifest.sections.flagshipProjects}
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {projectsCatalog.map((proj) => (
-          <div
-            key={proj.id}
-            className="p-3.5 rounded-lg bg-slate-950/60 border border-slate-800/80 print:border-none print:p-0 space-y-1.5 print:break-inside-avoid print-avoid-break"
-          >
-            <div className="flex items-baseline justify-between gap-1">
-              <span className="font-bold text-xs text-white print:text-black">{proj.title}</span>
-              <span className="text-[11px] text-slate-400 print:text-slate-600 font-mono">{proj.period}</span>
+        {projectsCatalog.map((proj) => {
+          const caseKey = CASE_STUDY_KEY_MAP[proj.id];
+          const localized = caseKey ? t.projects.caseStudies[caseKey] : undefined;
+          const title = localized?.title ?? proj.title;
+          const client = localized?.client ?? proj.client;
+          const period = localized?.period ?? proj.period;
+          const summary = localized?.summary ?? proj.summary;
+
+          return (
+            <div
+              key={proj.id}
+              className="p-3.5 rounded-lg bg-slate-950/60 border border-slate-800/80 print:border-none print:p-0 space-y-1.5 print:break-inside-avoid print-avoid-break"
+            >
+              <div className="flex items-baseline justify-between gap-1">
+                <span className="font-bold text-xs text-white print:text-black">{title}</span>
+                <span className="text-[11px] text-slate-400 print:text-slate-600 font-mono">{period}</span>
+              </div>
+              <div className="text-[11px] text-cyan-400 print:text-slate-700 font-medium">{client}</div>
+              <p className="text-xs text-slate-300 print:text-slate-700 leading-relaxed">{summary}</p>
+              <div className="text-[11px] text-slate-400 print:text-slate-600 pt-1">
+                <span className="font-semibold text-slate-300 print:text-slate-800">{t.projects.labels.techStack}: </span>
+                {proj.techStack.join(', ')}
+              </div>
             </div>
-            <div className="text-[11px] text-cyan-400 print:text-slate-700 font-medium">{proj.client}</div>
-            <p className="text-xs text-slate-300 print:text-slate-700 leading-relaxed">{proj.summary}</p>
-            <div className="text-[11px] text-slate-400 print:text-slate-600 pt-1">
-              <span className="font-semibold text-slate-300 print:text-slate-800">Stack: </span>
-              {proj.techStack.join(', ')}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FileText } from 'lucide-react';
 import { usePortfolioStore } from '../shared/store';
+import { useTranslation } from '../i18n/useTranslation';
+import { LanguageToggle } from '../i18n/LanguageToggle';
 import { NavbarBrand } from './NavbarBrand';
 import { NavbarNavLinks } from './NavbarNavLinks';
 import { NavbarThemeToggle } from './NavbarThemeToggle';
@@ -9,6 +11,7 @@ import { NavbarMobileMenu } from './NavbarMobileMenu';
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { activeSection, setActiveSection, setIsCvDrawerOpen, theme, toggleTheme } = usePortfolioStore();
+  const { t } = useTranslation();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -50,6 +53,8 @@ export const Navbar: React.FC = () => {
           <NavbarNavLinks activeSection={activeSection} onNavClick={handleNavClick} />
 
           <div className="flex items-center gap-2 sm:gap-3">
+            <LanguageToggle className="hidden sm:inline-flex" />
+
             <NavbarThemeToggle theme={theme} onToggleTheme={toggleTheme} />
 
             <div className="hidden sm:flex items-center">
@@ -57,10 +62,10 @@ export const Navbar: React.FC = () => {
                 type="button"
                 onClick={() => setIsCvDrawerOpen(true)}
                 className="inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium rounded-md text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300/80 dark:text-white dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 active:scale-[0.98] shadow-sm"
-                aria-label="View Full CV / Resume"
+                aria-label={t.nav.openCv}
               >
                 <FileText className="w-4 h-4 text-cyan-600 dark:text-cyan-400" aria-hidden="true" />
-                <span>Full CV / Print</span>
+                <span>{t.nav.openCv}</span>
               </button>
             </div>
 

@@ -8,6 +8,7 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
   beforeEach(() => {
     window.scrollTo = vi.fn();
     usePortfolioStore.setState({
+      language: 'en',
       activeSection: 'hero',
       selectedCategory: 'all',
       searchQuery: '',
@@ -161,7 +162,7 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
       render(<App />);
 
       // Case studies CTA
-      const caseStudiesBtn = screen.getByRole('link', { name: /view architecture case studies/i });
+      const caseStudiesBtn = screen.getByRole('link', { name: /view projects|se prosjekter/i });
       expect(caseStudiesBtn.className).toContain('min-h-[44px]');
 
       // Mobile menu toggle button
@@ -270,6 +271,74 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
     it('renders Team Leader role in Ciber experience card', () => {
       render(<App />);
       expect(screen.getByText(/Senior Consultant & Team Leader/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('7. Feature 009: Bilingual Language Toggle & WCAG 2.1/2.2 AA Compliance', () => {
+    it('synchronizes document.documentElement.lang with current language', () => {
+      usePortfolioStore.setState({ language: 'no' });
+      render(<App />);
+
+      expect(document.documentElement.lang).toBe('no');
+
+      const toggleBtn = screen.getByRole('button', { name: /bytt språk til engelsk/i });
+      fireEvent.click(toggleBtn);
+
+      expect(usePortfolioStore.getState().language).toBe('en');
+      expect(document.documentElement.lang).toBe('en');
+
+      fireEvent.click(screen.getByRole('button', { name: /switch language to norwegian/i }));
+      expect(usePortfolioStore.getState().language).toBe('no');
+      expect(document.documentElement.lang).toBe('no');
+    });
+
+    it('ensures LanguageToggle meets or exceeds 44x44px touch target standard', () => {
+      usePortfolioStore.setState({ language: 'no' });
+      render(<App />);
+      const toggleBtn = screen.getByRole('button', { name: /bytt språk til engelsk/i });
+      expect(toggleBtn.className).toContain('min-w-[44px]');
+      expect(toggleBtn.className).toContain('min-h-[44px]');
+    });
+
+    it('activates language toggle using Enter and Space keyboard navigation', () => {
+      usePortfolioStore.setState({ language: 'no' });
+      render(<App />);
+
+      const toggleBtn = screen.getByRole('button', { name: /bytt språk til engelsk/i });
+      toggleBtn.focus();
+      expect(document.activeElement).toBe(toggleBtn);
+
+      fireEvent.keyDown(toggleBtn, { key: 'Enter', code: 'Enter' });
+      expect(usePortfolioStore.getState().language).toBe('en');
+
+      fireEvent.keyDown(toggleBtn, { key: ' ', code: 'Space' });
+      expect(usePortfolioStore.getState().language).toBe('no');
+    });
+
+    it('hides inner text labels from screen readers with aria-hidden to prevent redundant announcements', () => {
+      usePortfolioStore.setState({ language: 'no' });
+      render(<App />);
+      const toggleBtn = screen.getByRole('button', { name: /bytt språk til engelsk/i });
+      const innerSpans = toggleBtn.querySelectorAll('span');
+      expect(innerSpans.length).toBe(2);
+      innerSpans.forEach((span) => {
+        expect(span).toHaveAttribute('aria-hidden', 'true');
+      });
+    });
+
+    it('translates navigation and hero landmarks dynamically without layout shift', () => {
+      usePortfolioStore.setState({ language: 'no' });
+      const { rerender } = render(<App />);
+
+      expect(screen.getByRole('heading', { name: /sjefsarkitekt & tech lead/i })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /se prosjekter/i })).toBeInTheDocument();
+
+      const toggleBtn = screen.getByRole('button', { name: /bytt språk til engelsk/i });
+      fireEvent.click(toggleBtn);
+      rerender(<App />);
+
+      expect(screen.getByRole('heading', { name: /lead architect & tech lead/i })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /view projects/i })).toBeInTheDocument();
     });
   });
 });

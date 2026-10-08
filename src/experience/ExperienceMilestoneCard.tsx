@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
 import { ExperienceMilestone } from '../shared/types';
+import { useTranslation } from '../i18n/useTranslation';
 
 interface ExperienceMilestoneCardProps {
   milestone: ExperienceMilestone;
@@ -13,13 +14,22 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
   isExpanded,
   onToggle,
 }) => {
+  const { t } = useTranslation();
+  const localized = t.experience.milestones[milestone.id as keyof typeof t.experience.milestones];
+
+  const role = localized?.role ?? milestone.role;
+  const company = localized?.organization ?? milestone.company;
+  const period = localized?.period ?? milestone.period;
+  const summary = localized?.summary ?? milestone.summary;
+  const highlights = localized?.highlights ?? milestone.architectureHighlights;
+
   return (
     <article className="p-6 sm:p-8 rounded-xl bg-white/95 dark:bg-slate-900/50 border border-violet-200/70 dark:border-slate-800 hover:border-violet-300 dark:hover:border-slate-700 transition-all shadow-sm">
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
         <div className="space-y-1.5 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
-              {milestone.role}
+              {role}
             </span>
             {milestone.badge && (
               <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-100 text-violet-800 border border-violet-300 dark:bg-cyan-950 dark:text-cyan-300 dark:border-cyan-800/60">
@@ -29,13 +39,13 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
           </div>
 
           <div className="text-base font-bold text-violet-700 dark:text-cyan-400">
-            {milestone.company}
+            {company}
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" aria-hidden="true" />
-              {milestone.period}
+              {period}
             </span>
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" aria-hidden="true" />
@@ -52,7 +62,7 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
           aria-expanded={isExpanded}
           aria-controls={`details-${milestone.id}`}
         >
-          <span>{isExpanded ? 'Hide Highlights' : 'View Highlights'}</span>
+          <span>{isExpanded ? t.experience.hideHighlights : t.experience.viewHighlights}</span>
           {isExpanded ? (
             <ChevronUp className="w-3.5 h-3.5" aria-hidden="true" />
           ) : (
@@ -63,7 +73,7 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
 
       {/* Summary Text */}
       <p className="mt-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-        {milestone.summary}
+        {summary}
       </p>
 
       {/* Expandable Architecture Highlights */}
@@ -71,10 +81,10 @@ export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = (
         <div id={`details-${milestone.id}`} className="mt-5 pt-5 border-t border-violet-100 dark:border-slate-800/80 space-y-4">
           <div>
             <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-              Architectural Deliverables & Impact:
+              {t.experience.deliverablesLabel}
             </h4>
             <ul className="space-y-2 list-disc list-outside ml-4 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-              {milestone.architectureHighlights.map((highlight, idx) => (
+              {highlights.map((highlight, idx) => (
                 <li key={idx}>{highlight}</li>
               ))}
             </ul>

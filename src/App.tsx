@@ -10,9 +10,10 @@ import { CVManifestDrawer } from './manifest/CVManifestDrawer';
 import { ToastNotification } from './shared/ToastNotification';
 import { CursorTrail3D } from './effects/CursorTrail3D';
 import { usePortfolioStore } from './shared/store';
+import { LanguageCalculator } from './i18n/LanguageCalculator';
 
 export const App: React.FC = () => {
-  const { theme, setActiveSection } = usePortfolioStore();
+  const { theme, language, setActiveSection } = usePortfolioStore();
 
   // Sync theme with document.documentElement and color-scheme
   useEffect(() => {
@@ -27,6 +28,13 @@ export const App: React.FC = () => {
       }
     }
   }, [theme]);
+
+  // Sync language with document.documentElement.lang
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = LanguageCalculator.getHtmlLang(language);
+    }
+  }, [language]);
 
   // Active section scroll tracking with bottom-of-page contact guarantee
   useEffect(() => {

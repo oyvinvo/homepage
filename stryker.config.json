@@ -8,7 +8,8 @@
     "src/shared/ProjectFilterCalculator.ts",
     "src/shared/ClipboardActionCalculator.ts",
     "src/shared/ReadingTimeCalculator.ts",
-    "src/effects/CursorTrailCalculator.ts"
+    "src/effects/CursorTrailCalculator.ts",
+    "src/i18n/LanguageCalculator.ts"
   ],
   "thresholds": {
     "high": 80,

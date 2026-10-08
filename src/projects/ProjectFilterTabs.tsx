@@ -1,18 +1,11 @@
 import React from 'react';
 import { ProjectCategory } from '../shared/types';
+import { useTranslation } from '../i18n/useTranslation';
 
 export interface CategoryOption {
   id: ProjectCategory;
   label: string;
 }
-
-export const CATEGORIES: CategoryOption[] = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'distributed', label: 'Distributed Systems' },
-  { id: 'event-driven', label: 'Event-Driven' },
-  { id: 'modernization', label: 'Modernization' },
-  { id: 'web', label: 'High-Scale Web' },
-];
 
 interface ProjectFilterTabsProps {
   selectedCategory: ProjectCategory;
@@ -25,9 +18,19 @@ export const ProjectFilterTabs: React.FC<ProjectFilterTabsProps> = ({
   counts,
   onSelectCategory,
 }) => {
+  const { t } = useTranslation();
+
+  const categories: CategoryOption[] = [
+    { id: 'all', label: t.projects.categories.all },
+    { id: 'distributed', label: t.projects.categories.distributed },
+    { id: 'event-driven', label: t.projects.categories.eventDriven },
+    { id: 'modernization', label: t.projects.categories.modernization },
+    { id: 'web', label: t.projects.categories.web3d },
+  ];
+
   return (
-    <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Project Categories">
-      {CATEGORIES.map((cat) => {
+    <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label={t.projects.sectionBadge}>
+      {categories.map((cat) => {
         const isSelected = selectedCategory === cat.id;
         return (
           <button

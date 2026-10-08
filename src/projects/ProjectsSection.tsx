@@ -8,9 +8,11 @@ import { ProjectEmptyState } from './ProjectEmptyState';
 import { ProjectFilterCalculator } from '../shared/ProjectFilterCalculator';
 import { ProjectCategory } from '../shared/types';
 import { usePortfolioStore } from '../shared/store';
+import { useTranslation } from '../i18n/useTranslation';
 
 export const ProjectsSection: React.FC = () => {
   const { selectedCategory, setSelectedCategory, searchQuery, setSearchQuery } = usePortfolioStore();
+  const { t } = useTranslation();
 
   const filteredProjects = ProjectFilterCalculator.filter(
     projectsCatalog,
@@ -41,13 +43,13 @@ export const ProjectsSection: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 text-blue-700 dark:text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">
           <Layers className="w-4 h-4" aria-hidden="true" />
-          <span>Case Studies</span>
+          <span>{t.projects.sectionBadge}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold text-slate-950 dark:text-white tracking-tight">
-          Featured Architecture Case Studies
+          {t.projects.title}
         </h2>
         <p className="mt-3 text-base sm:text-lg text-slate-700 dark:text-slate-300 max-w-3xl leading-relaxed">
-          Production case studies highlighting architectural solutions, technical tradeoffs, and verifiable business impact.
+          {t.projects.subtitle}
         </p>
 
         {/* Filters and Search Bar */}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useCardTilt } from '../effects/useCardTilt';
+import { useTranslation } from '../i18n/useTranslation';
 
 export const HeroPortraitCard: React.FC = () => {
+  const { t } = useTranslation();
   const {
     cardRef: portraitRef,
     style: portraitTiltStyle,
@@ -52,11 +54,11 @@ export const HeroPortraitCard: React.FC = () => {
         <div className="mt-3 px-1.5 pb-0.5 flex items-center justify-between text-xs">
           <div>
             <div className="font-bold text-slate-900 dark:text-white">Øyvind Volden</div>
-            <div className="text-slate-500 dark:text-slate-400 text-[11px]">Lillehammer, Norway</div>
+            <div className="text-slate-500 dark:text-slate-400 text-[11px]">{t.hero.location}</div>
           </div>
           <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-700/60 text-emerald-800 dark:text-emerald-300 text-[11px] font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" aria-hidden="true" />
-            Full-time @ KulturIT
+            {t.hero.statusBadge}
           </span>
         </div>
       </div>

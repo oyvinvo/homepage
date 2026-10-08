@@ -1,17 +1,5 @@
 import React from 'react';
-
-export interface NavLinkItem {
-  label: string;
-  href: string;
-}
-
-export const NAV_LINKS: NavLinkItem[] = [
-  { label: 'Leadership', href: '#leadership' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
-];
+import { useTranslation } from '../i18n/useTranslation';
 
 interface NavbarNavLinksProps {
   activeSection: string;
@@ -22,9 +10,19 @@ export const NavbarNavLinks: React.FC<NavbarNavLinksProps> = ({
   activeSection,
   onNavClick,
 }) => {
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { label: t.nav.leadership, href: '#leadership' },
+    { label: t.nav.experience, href: '#experience' },
+    { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
+
   return (
     <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
-      {NAV_LINKS.map((link) => {
+      {navLinks.map((link) => {
         const isActive = activeSection === link.href.slice(1);
         return (
           <a

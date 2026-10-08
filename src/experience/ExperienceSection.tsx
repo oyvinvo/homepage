@@ -4,9 +4,11 @@ import { experienceCatalog } from './experienceCatalog';
 import { usePortfolioStore } from '../shared/store';
 import { ExperienceMilestoneCard } from './ExperienceMilestoneCard';
 import { ExperienceEducationCard } from './ExperienceEducationCard';
+import { useTranslation } from '../i18n/useTranslation';
 
 export const ExperienceSection: React.FC = () => {
   const { expandedMilestoneId, setExpandedMilestoneId } = usePortfolioStore();
+  const { t } = useTranslation();
 
   const toggleMilestone = (id: string) => {
     setExpandedMilestoneId(expandedMilestoneId === id ? null : id);
@@ -20,13 +22,13 @@ export const ExperienceSection: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 text-violet-700 dark:text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">
           <Briefcase className="w-4 h-4" aria-hidden="true" />
-          <span>Track Record</span>
+          <span>{t.experience.sectionBadge}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold text-slate-950 dark:text-white tracking-tight">
-          Career Milestones & Architecture History
+          {t.experience.title}
         </h2>
         <p className="mt-3 text-base sm:text-lg text-slate-700 dark:text-slate-300 max-w-3xl leading-relaxed">
-          Over 15 years leading engineering teams, modernizing critical Norwegian transport infrastructure, and architecting national cultural heritage repositories.
+          {t.experience.subtitle}
         </p>
 
         {/* Milestones List */}

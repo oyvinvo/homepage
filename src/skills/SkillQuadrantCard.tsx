@@ -1,12 +1,26 @@
 import React from 'react';
 import { SkillCategoryGroup } from '../shared/types';
 import { useCardTilt } from '../effects/useCardTilt';
+import { useTranslation } from '../i18n/useTranslation';
 
 interface SkillQuadrantCardProps {
   group: SkillCategoryGroup;
 }
 
 export const SkillQuadrantCard: React.FC<SkillQuadrantCardProps> = ({ group }) => {
+  const { t } = useTranslation();
+  const localizedGroup = t.skills.quadrants[group.id as keyof typeof t.skills.quadrants];
+  const title = localizedGroup?.title ?? group.title;
+  const description = localizedGroup?.description ?? group.description;
+
+  const formatLevel = (level: string) => {
+    const lower = level.toLowerCase();
+    if (lower.includes('expert')) return t.skills.levels.expert;
+    if (lower.includes('advanc')) return t.skills.levels.advanced;
+    if (lower.includes('profic')) return t.skills.levels.proficient;
+    return level;
+  };
+
   const {
     cardRef,
     style,
@@ -43,9 +57,9 @@ export const SkillQuadrantCard: React.FC<SkillQuadrantCardProps> = ({ group }) =
       />
 
       <div className="relative z-10">
-        <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">{group.title}</h3>
+        <h3 className="text-xl font-bold text-slate-950 dark:text-white tracking-tight">{title}</h3>
         <p className="mt-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-          {group.description}
+          {description}
         </p>
       </div>
 
@@ -63,7 +77,7 @@ export const SkillQuadrantCard: React.FC<SkillQuadrantCardProps> = ({ group }) =
             <span>{skill.name}</span>
             {skill.level && (
               <span className="text-[10px] text-slate-500 dark:text-slate-400 font-normal">
-                ({skill.level})
+                ({formatLevel(skill.level)})
               </span>
             )}
           </span>

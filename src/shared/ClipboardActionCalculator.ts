@@ -11,24 +11,24 @@ export class ClipboardActionCalculator {
   /**
    * Generates a success toast message when text is copied.
    */
-  public static createSuccessToast(itemText: string): ToastMessage {
+  public static createSuccessToast(itemText: string, customMessage?: string): ToastMessage {
     const cleanText = this.sanitizeEmail(itemText);
     return {
       id: `toast-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       type: 'success',
-      message: `Copied ${cleanText} to clipboard!`,
+      message: customMessage || `Copied ${cleanText} to clipboard!`,
     };
   }
 
   /**
    * Generates an error toast message when automated clipboard copy fails.
    */
-  public static createFailureToast(itemText: string): ToastMessage {
+  public static createFailureToast(itemText: string, customMessage?: string): ToastMessage {
     const cleanText = this.sanitizeEmail(itemText);
     return {
       id: `toast-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       type: 'error',
-      message: `Clipboard access denied. Please manually copy: ${cleanText}`,
+      message: customMessage || `Clipboard access denied. Please manually copy: ${cleanText}`,
     };
   }
 

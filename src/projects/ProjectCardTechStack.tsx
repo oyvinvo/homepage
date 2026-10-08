@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { ProjectLink } from '../shared/types';
+import { useTranslation } from '../i18n/useTranslation';
 
 interface ProjectCardTechStackProps {
   techStack: string[];
@@ -11,10 +12,12 @@ export const ProjectCardTechStack: React.FC<ProjectCardTechStackProps> = ({
   techStack,
   links,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="relative z-10 mt-6 pt-4 border-t border-blue-100 dark:border-slate-800/80">
       <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">
-        Key Technologies:
+        {t.projects.labels.techStack}:
       </div>
       <div className="flex flex-wrap gap-1.5">
         {techStack.map((tech, idx) => (

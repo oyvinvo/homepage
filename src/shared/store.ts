@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { PortfolioState, ProjectCategory, ToastMessage } from './types';
+import { Language } from '../i18n/types';
+import { LanguageCalculator } from '../i18n/LanguageCalculator';
 
 const applyThemeToDom = (theme: 'light' | 'dark') => {
   if (typeof document !== 'undefined') {
@@ -32,10 +34,41 @@ const getInitialTheme = (): 'light' | 'dark' => {
   return 'dark';
 };
 
+const applyLanguageToDom = (language: Language) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = LanguageCalculator.getHtmlLang(language);
+  }
+};
+
+const getInitialLanguage = (): Language => {
+  try {
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.localStorage !== 'undefined' &&
+      typeof window.localStorage.getItem === 'function'
+    ) {
+      const saved = window.localStorage.getItem('portfolio-language');
+      const browserLangs =
+        typeof navigator !== 'undefined'
+          ? (navigator.languages as string[]) || (navigator.language ? [navigator.language] : null)
+          : null;
+      const resolved = LanguageCalculator.resolveInitialLanguage(saved, browserLangs);
+      applyLanguageToDom(resolved);
+      return resolved;
+    }
+  } catch {
+    // Ignore restricted environments
+  }
+  applyLanguageToDom('no');
+  return 'no';
+};
+
 const initialTheme = getInitialTheme();
+const initialLanguage = getInitialLanguage();
 
 export const usePortfolioStore = create<PortfolioState>((set, get) => ({
   theme: initialTheme,
+  language: initialLanguage,
   activeSection: 'hero',
   selectedCategory: 'all',
   searchQuery: '',
@@ -62,6 +95,27 @@ export const usePortfolioStore = create<PortfolioState>((set, get) => ({
   toggleTheme: () => {
     const nextTheme = get().theme === 'dark' ? 'light' : 'dark';
     get().setTheme(nextTheme);
+  },
+
+  setLanguage: (language: Language) => {
+    applyLanguageToDom(language);
+    try {
+      if (
+        typeof window !== 'undefined' &&
+        typeof window.localStorage !== 'undefined' &&
+        typeof window.localStorage.setItem === 'function'
+      ) {
+        window.localStorage.setItem('portfolio-language', language);
+      }
+    } catch {
+      // Ignore in restricted environments
+    }
+    set({ language });
+  },
+
+  toggleLanguage: () => {
+    const nextLang = LanguageCalculator.toggle(get().language);
+    get().setLanguage(nextLang);
   },
 
   setActiveSection: (activeSection: string) => set({ activeSection }),
