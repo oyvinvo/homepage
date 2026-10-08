@@ -67,11 +67,13 @@ export const HeroNetwork3D: React.FC = () => {
       return;
     }
 
-    // Colors based on theme
+    // Colors and blending based on theme
     const isDark = theme === 'dark';
-    const nodeColor = isDark ? 0x38bdf8 : 0x0284c7; // Sky blue / Cyan
-    const lineColor = isDark ? 0x06b6d4 : 0x6366f1; // Cyan in dark, Indigo in light
-    const lineOpacity = isDark ? 0.28 : 0.18;
+    const nodeColor = isDark ? 0x38bdf8 : 0x0284c7; // Sky-400 in dark, Sky-600 in light
+    const lineColor = isDark ? 0x06b6d4 : 0x0284c7; // Cyan in dark, Sky-600 in light
+    const lineOpacity = isDark ? 0.32 : 0.45;
+    const lineBlending = isDark ? THREE.AdditiveBlending : THREE.NormalBlending;
+    const pointBlending = isDark ? THREE.AdditiveBlending : THREE.NormalBlending;
 
     // Generate Nodes
     const nodes: NodePoint[] = [];
@@ -101,9 +103,10 @@ export const HeroNetwork3D: React.FC = () => {
 
     const pointsMat = new THREE.PointsMaterial({
       color: nodeColor,
-      size: 0.18,
+      size: isDark ? 0.18 : 0.22,
       transparent: true,
-      opacity: isDark ? 0.85 : 0.7,
+      opacity: isDark ? 0.85 : 0.9,
+      blending: pointBlending,
     });
 
     const pointsMesh = new THREE.Points(pointsGeo, pointsMat);
@@ -122,7 +125,7 @@ export const HeroNetwork3D: React.FC = () => {
       vertexColors: true,
       transparent: true,
       opacity: lineOpacity,
-      blending: THREE.AdditiveBlending,
+      blending: lineBlending,
     });
 
     const linesMesh = new THREE.LineSegments(linesGeo, linesMat);
@@ -199,21 +202,27 @@ export const HeroNetwork3D: React.FC = () => {
             if (dist < CONNECTION_DISTANCE) {
               const alpha = 1 - dist / CONNECTION_DISTANCE;
 
+              // In dark mode: fade toward black (0,0,0) for additive glow
+              // In light mode: fade toward white (1,1,1) for smooth fading against light background
+              const r = isDark ? lineRgb.r * alpha : lineRgb.r * alpha + (1 - alpha);
+              const g = isDark ? lineRgb.g * alpha : lineRgb.g * alpha + (1 - alpha);
+              const b = isDark ? lineRgb.b * alpha : lineRgb.b * alpha + (1 - alpha);
+
               // Line start
               linePositions[lineIdx * 6] = node.position.x;
               linePositions[lineIdx * 6 + 1] = node.position.y;
               linePositions[lineIdx * 6 + 2] = node.position.z;
-              lineColors[lineIdx * 6] = lineRgb.r * alpha;
-              lineColors[lineIdx * 6 + 1] = lineRgb.g * alpha;
-              lineColors[lineIdx * 6 + 2] = lineRgb.b * alpha;
+              lineColors[lineIdx * 6] = r;
+              lineColors[lineIdx * 6 + 1] = g;
+              lineColors[lineIdx * 6 + 2] = b;
 
               // Line end
               linePositions[lineIdx * 6 + 3] = other.position.x;
               linePositions[lineIdx * 6 + 4] = other.position.y;
               linePositions[lineIdx * 6 + 5] = other.position.z;
-              lineColors[lineIdx * 6 + 3] = lineRgb.r * alpha;
-              lineColors[lineIdx * 6 + 4] = lineRgb.g * alpha;
-              lineColors[lineIdx * 6 + 5] = lineRgb.b * alpha;
+              lineColors[lineIdx * 6 + 3] = r;
+              lineColors[lineIdx * 6 + 4] = g;
+              lineColors[lineIdx * 6 + 5] = b;
 
               lineIdx++;
             }
