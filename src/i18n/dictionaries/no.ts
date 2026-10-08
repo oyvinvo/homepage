@@ -21,7 +21,7 @@ export const noDictionary: PortfolioContentDictionary = {
     headlineRole: 'Sjefsarkitekt & Tech Lead • Faggruppeleder Arkitektur hos KulturIT',
     bio1: 'Leder arkitekturgruppen hos KulturIT med ansvar for teknologistrategi, modernisering og arkitekturguvernans på tvers av nasjonale fellesløsninger for museer og kulturarvinstitusjoner.',
     bio2: 'Over 15 års erfaring med design og leveranse av samfunnskritiske distribuerte systemer – fra regelmotorer med 11 000+ forvaltningsregler for Statens vegvesen til skybaserte mikrotjenester og 3D/IIIF-kulturarvsplattformer.',
-    bio3: 'Brenner for pragmatisk domenedrevet design (DDD), hendelsesstyrte arkitekturer, utviklerautonomi og å bygge robuste ingeniørkulturer som leverer varig forretningsverdi.',
+    bio3: 'Brenner for ren kode, god lesbarhet og pragmatisk domenedrevet design (DDD) – med en overbevisning om at god programvare må bygges med enkelhet og klarhet, slik at den er lett å forstå, gjennomgå og videreutvikle.',
     viewProjects: 'Se prosjekter',
     experience: 'Erfaring',
     openCv: 'Åpne CV',
@@ -386,7 +386,7 @@ export const noDictionary: PortfolioContentDictionary = {
     profileText: [
       'Sjefsarkitekt og faggruppeleder for arkitektur hos KulturIT med over 15 års erfaring fra design, ledelse og leveranse av samfunnskritiske IT-løsninger.',
       'Bred bakgrunn fra offentlig og privat sektor, inkludert store moderniseringsprogrammer som Autosys KSAK og nasjonal regelmotor for Statens vegvesen, samt sky- og kulturarvsløsninger for museer i Norden.',
-      'Sterk forkjemper for pragmatisk domenedrevet design, åpne standarder, typesikkerhet og sunne ingeniørkulturer.',
+      'Sterk forkjemper for pragmatisk domenedrevet design, åpne standarder, typesikkerhet og gode fagmiljøer.',
     ],
     educationTitle: 'Utdanning',
     educationDegree: 'Cand.Mag. i Informatikk',

@@ -21,7 +21,7 @@ export const enDictionary: PortfolioContentDictionary = {
     headlineRole: 'Lead Architect & Tech Lead • Head of Architecture Group at KulturIT',
     bio1: 'Leading the architecture guild at KulturIT with strategic oversight over enterprise technology roadmaps, cloud modernization, and architectural governance across national digital platforms for museums and cultural heritage institutions.',
     bio2: 'Over 15 years of battle-tested engineering leadership delivering mission-critical distributed systems — ranging from rule engines evaluating 11,000+ legal vehicle rules for the Norwegian Public Roads Administration (Statens vegvesen) to cloud-native microservices and interactive 3D/IIIF heritage platforms.',
-    bio3: 'Passionate about pragmatic Domain-Driven Design (DDD), event-driven microservices, developer autonomy, and establishing high-trust engineering cultures that deliver sustainable enterprise impact.',
+    bio3: 'Passionate about clean code, readability, and pragmatic Domain-Driven Design (DDD) — believing software should be crafted with clarity and simplicity so it is effortless to read, review, and evolve.',
     viewProjects: 'View Projects',
     experience: 'Experience',
     openCv: 'Open CV',
@@ -386,7 +386,7 @@ export const enDictionary: PortfolioContentDictionary = {
     profileText: [
       'Lead Architect and Head of Architecture Group at KulturIT with over 15 years of technical leadership designing and scaling mission-critical IT solutions.',
       'Extensive background across Norwegian public and private sectors, including major modernization programs such as Autosys KSAK and national statutory rule engines for Statens vegvesen, as well as cloud-native heritage platforms for Nordic museums.',
-      'Passionate advocate of pragmatic Domain-Driven Design, open standards, end-to-end type safety, and empowering engineering cultures.',
+      'Passionate advocate of clean code, pragmatic Domain-Driven Design, open standards, end-to-end type safety, and strong engineering communities.',
     ],
     educationTitle: 'Education',
     educationDegree: 'Cand.Mag. in Computer Science',
