@@ -52,7 +52,7 @@ export const noDictionary: PortfolioContentDictionary = {
   leadership: {
     sectionBadge: 'Faggruppeledelse & Prinsipper',
     title: 'Arkitekturledelse & Filosofi',
-    subtitle: 'Hvordan jeg bygger felles teknisk retning, myndiggjør ingeniører og sikrer bærekraftige systemer over tid.',
+    subtitle: 'Hvordan jeg bygger felles teknisk retning, gir utviklingsteamene handlingsrom og faglig trygghet, og sikrer bærekraftige systemer over tid.',
     pillars: {
       cleanCode: {
         title: 'Ren Kode & Lesbarhet Først',
@@ -60,11 +60,11 @@ export const noDictionary: PortfolioContentDictionary = {
       },
       domainDriven: {
         title: 'Domenedrevet Design (DDD)',
-        description: 'Deler komplekse forretningsdomener inn i tydelige Bounded Contexts og felles begrepsapparat (Ubiquitous Language). Isolerer domenekjernen fra infrastruktur for varig vedlikeholdbarhet.',
+        description: 'Deler komplekse fagområder inn i tydelig avgrensede ansvarsområder med et felles fagspråk mellom fag og utviklere. Skjermer kjernelogikken fra teknisk infrastruktur, slik at løsningen blir enkel å forvalte og videreutvikle over tid.',
       },
       adrGovernance: {
         title: 'ADR-styring & Beslutningsprosesser',
-        description: 'Standardiserer arkitekturvalg gjennom versjonskontrollerte Architecture Decision Records (ADRs). Skaper transparens rundt avveininger, RFC-gjennomganger og bred faglig konsensus.',
+        description: 'Standardiserer arkitekturvalg gjennom versjonskontrollerte Architecture Decision Records (ADRs). Skaper transparens rundt tekniske avveininger, faglige diskusjoner og bred forankring.',
       },
       eventDriven: {
         title: 'Hendelsesstyrte Distribuerte Systemer',
@@ -72,7 +72,7 @@ export const noDictionary: PortfolioContentDictionary = {
       },
       mentorship: {
         title: 'Faggruppeledelse & Teknisk Mentorskap',
-        description: 'Leder arkitekturgruppen i KulturIT. Veileder senior- og staff-ingeniører, etablerer retningslinjer og bygger bro mellom overordnet forretningsstrategi og praktisk ingeniørarbeid.',
+        description: 'Leder arkitekturgruppen i KulturIT. Veileder utviklere og arkitekter, etablerer retningslinjer og bygger bro mellom overordnede mål og praktisk utviklingsarbeid.',
       },
       simplicity: {
         title: 'Pragmatisk Arkitektur & Enkelhet (KISS)',
