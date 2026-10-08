@@ -19,7 +19,7 @@ export const noDictionary: PortfolioContentDictionary = {
     titleLead: 'Hei, jeg er',
     titleName: 'Øyvind Volden',
     headlineRole: 'Sjefsarkitekt & Tech Lead • Faggruppeleder Arkitektur hos KulturIT',
-    bio1: 'Leder arkitekturgruppen hos KulturIT med ansvar for teknologistrategi, modernisering og arkitekturguvernans på tvers av nasjonale fellesløsninger for museer og kulturarvinstitusjoner.',
+    bio1: 'Leder arkitekturgruppen hos KulturIT med ansvar for teknologistrategi, modernisering og arkitekturstyring på tvers av nasjonale fellesløsninger for museer og kulturarvinstitusjoner.',
     bio2: 'Over 15 års erfaring med design og leveranse av samfunnskritiske distribuerte systemer – fra regelmotorer med 11 000+ forvaltningsregler for Statens vegvesen til skybaserte mikrotjenester og 3D/IIIF-kulturarvsplattformer.',
     bio3: 'Brenner for ren kode, god lesbarhet og pragmatisk domenedrevet design (DDD) – med en overbevisning om at god programvare må bygges med enkelhet og klarhet, slik at den er lett å forstå, gjennomgå og videreutvikle.',
     viewProjects: 'Se prosjekter',
@@ -63,7 +63,7 @@ export const noDictionary: PortfolioContentDictionary = {
         description: 'Deler komplekse forretningsdomener inn i tydelige Bounded Contexts og felles begrepsapparat (Ubiquitous Language). Isolerer domenekjernen fra infrastruktur for varig vedlikeholdbarhet.',
       },
       adrGovernance: {
-        title: 'ADR-guvernans & Beslutningsprosesser',
+        title: 'ADR-styring & Beslutningsprosesser',
         description: 'Standardiserer arkitekturvalg gjennom versjonskontrollerte Architecture Decision Records (ADRs). Skaper transparens rundt avveininger, RFC-gjennomganger og bred faglig konsensus.',
       },
       eventDriven: {
@@ -329,7 +329,7 @@ export const noDictionary: PortfolioContentDictionary = {
     quadrants: {
       architecture: {
         title: 'Arkitektur & Metodikk',
-        description: 'Strategisk systemdesign, guvernans, domenemodellering og ledelse av tekniske team.',
+        description: 'Strategisk systemdesign, arkitekturstyring, domenemodellering og ledelse av tekniske team.',
       },
       languages: {
         title: 'Språk & Rammeverk',
