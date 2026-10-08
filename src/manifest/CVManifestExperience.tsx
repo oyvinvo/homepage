@@ -2,6 +2,20 @@ import React from 'react';
 import { experienceCatalog } from '../experience/experienceCatalog';
 import { useTranslation } from '../i18n/useTranslation';
 
+const MILESTONE_KEY_MAP: Record<string, string> = {
+  'kulturit': 'kulturit',
+  'volden': 'volden',
+  'autosys-ksak': 'autosys',
+  'autosys': 'autosys',
+  'regelforvaltning': 'regelforvaltning',
+  'ciber-cloud': 'ciber',
+  'ciber': 'ciber',
+  'noark-documentum': 'noark5',
+  'noark5': 'noark5',
+  'mohive-saas': 'mohive',
+  'mohive': 'mohive',
+};
+
 export const CVManifestExperience: React.FC = () => {
   const { t } = useTranslation();
 
@@ -12,7 +26,8 @@ export const CVManifestExperience: React.FC = () => {
       </h3>
       <div className="space-y-6">
         {experienceCatalog.map((exp) => {
-          const localized = t.experience.milestones[exp.id as keyof typeof t.experience.milestones];
+          const lookupKey = MILESTONE_KEY_MAP[exp.id] || exp.id;
+          const localized = t.experience.milestones[exp.id] || t.experience.milestones[lookupKey];
           const role = localized?.role ?? exp.role;
           const company = localized?.organization ?? exp.company;
           const period = localized?.period ?? exp.period;

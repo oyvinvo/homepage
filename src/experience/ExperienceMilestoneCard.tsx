@@ -9,21 +9,36 @@ interface ExperienceMilestoneCardProps {
   onToggle: () => void;
 }
 
+const MILESTONE_KEY_MAP: Record<string, string> = {
+  'kulturit': 'kulturit',
+  'volden': 'volden',
+  'autosys-ksak': 'autosys',
+  'autosys': 'autosys',
+  'regelforvaltning': 'regelforvaltning',
+  'ciber-cloud': 'ciber',
+  'ciber': 'ciber',
+  'noark-documentum': 'noark5',
+  'noark5': 'noark5',
+  'mohive-saas': 'mohive',
+  'mohive': 'mohive',
+};
+
 export const ExperienceMilestoneCard: React.FC<ExperienceMilestoneCardProps> = ({
   milestone,
   isExpanded,
   onToggle,
 }) => {
   const { t } = useTranslation();
-  const localized = t.experience.milestones[milestone.id as keyof typeof t.experience.milestones];
+  const lookupKey = MILESTONE_KEY_MAP[milestone.id] || milestone.id;
+  const localized = t.experience.milestones[milestone.id] || t.experience.milestones[lookupKey];
 
   const role = localized?.role ?? milestone.role;
   const company = localized?.organization ?? milestone.company;
   const period = localized?.period ?? milestone.period;
   const summary = localized?.summary ?? milestone.summary;
   const highlights = localized?.highlights ?? milestone.architectureHighlights;
-  const badge = t.experience.badges?.[milestone.id] ?? milestone.badge;
-  const location = t.experience.locations?.[milestone.id] ?? milestone.location;
+  const badge = t.experience.badges?.[milestone.id] ?? t.experience.badges?.[lookupKey] ?? milestone.badge;
+  const location = t.experience.locations?.[milestone.id] ?? t.experience.locations?.[lookupKey] ?? milestone.location;
 
   return (
     <article className="p-6 sm:p-8 rounded-xl bg-white/95 dark:bg-slate-900/50 border border-violet-200/70 dark:border-slate-800 hover:border-violet-300 dark:hover:border-slate-700 transition-all shadow-sm">

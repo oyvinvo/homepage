@@ -99,15 +99,7 @@ export interface ExperienceTranslation {
   viewHighlights: string;
   hideHighlights: string;
   deliverablesLabel: string;
-  milestones: {
-    kulturit: MilestoneTranslation;
-    volden: MilestoneTranslation;
-    autosys: MilestoneTranslation;
-    regelforvaltning: MilestoneTranslation;
-    ciber: MilestoneTranslation;
-    noark5: MilestoneTranslation;
-    mohive: MilestoneTranslation;
-  };
+  milestones: Record<string, MilestoneTranslation>;
   locations?: Record<string, string>;
   badges?: Record<string, string>;
   education: {

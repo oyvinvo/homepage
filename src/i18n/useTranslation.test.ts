@@ -67,4 +67,30 @@ describe('useTranslation Hook', () => {
     expect(result.current.t.footer.copyright).toContain('Sjefsarkitekt');
     expect(result.current.t.footer.builtWith).toContain('Universelt utformet');
   });
+
+  it('correctly maps and translates all Ciber and career milestones in both Norwegian and English', () => {
+    const { result } = renderHook(() => useTranslation());
+
+    // Norwegian verification
+    const noMilestones = result.current.t.experience.milestones;
+    expect(noMilestones['ciber-cloud']?.role).toBe('Seniorkonsulent & Teamleder (Cloud N5D)');
+    expect(noMilestones['ciber']?.role).toBe('Seniorkonsulent & Teamleder (Cloud N5D)');
+    expect(noMilestones['ciber-cloud']?.summary).toContain('personalansvar');
+    expect(noMilestones['noark-documentum']?.role).toBe('Systemarkitekt & Seniorutvikler (NOARK 5 Documentum)');
+    expect(noMilestones['noark5']?.role).toBe('Systemarkitekt & Seniorutvikler (NOARK 5 Documentum)');
+    expect(noMilestones['autosys-ksak']?.role).toBe('Sjefsarkitekt & Teknisk Gruppeleder (Autosys KSAK)');
+    expect(noMilestones['mohive-saas']?.role).toBe('Systemutvikler & Arkitekturansvarlig (e-Learning SaaS)');
+
+    // English verification
+    act(() => {
+      result.current.setLanguage('en');
+    });
+    const enMilestones = result.current.t.experience.milestones;
+    expect(enMilestones['ciber-cloud']?.role).toBe('Senior Consultant & Team Leader (Cloud N5D)');
+    expect(enMilestones['ciber']?.role).toBe('Senior Consultant & Team Leader (Cloud N5D)');
+    expect(enMilestones['ciber-cloud']?.summary).toContain('personnel responsibility');
+    expect(enMilestones['noark-documentum']?.role).toBe('System Architect & Integration Engineer (NOARK 5 Documentum)');
+    expect(enMilestones['autosys-ksak']?.role).toBe('Lead System Architect & Tech Lead (Autosys KSAK)');
+    expect(enMilestones['mohive-saas']?.role).toBe('Software Engineer & Architecture Lead (e-Learning SaaS)');
+  });
 });

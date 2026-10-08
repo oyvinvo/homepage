@@ -340,5 +340,14 @@ describe('KulturIT UX & Accessibility Audit - Modern Minimalist Zero-3D Architec
       expect(screen.getByRole('heading', { name: /lead architect & tech lead/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /view projects/i })).toBeInTheDocument();
     });
+
+    it('renders Ciber Norge experiences in authentic Norwegian when language is "no"', () => {
+      usePortfolioStore.setState({ language: 'no' });
+      render(<App />);
+
+      expect(screen.getByText('Seniorkonsulent & Teamleder (Cloud N5D)')).toBeInTheDocument();
+      expect(screen.getByText('Systemarkitekt & Seniorutvikler (NOARK 5 Documentum)')).toBeInTheDocument();
+      expect(screen.getByText(/personalansvar/i)).toBeInTheDocument();
+    });
   });
 });
