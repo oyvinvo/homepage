@@ -7,14 +7,23 @@ import { ProjectCardMetrics } from './ProjectCardMetrics';
 import { ProjectCardTechStack } from './ProjectCardTechStack';
 import { useTranslation } from '../i18n/useTranslation';
 
-const CASE_STUDY_KEY_MAP: Record<string, 'ekulturHandover' | 'virtueltMuseum' | 'ekulturCoreGateway' | 'ekulturAiVision' | 'autosysKsak' | 'regelforvaltningEngine' | 'bekymringsmestring'> = {
+const CASE_STUDY_KEY_MAP: Record<string, string> = {
+  'bekymringsmestring': 'bekymringsmestring',
+  'vm-3d': 'vm3d',
+  'vm-360': 'vm360',
+  'vm-scrollytelling-quiz': 'vmScrollytellingQuiz',
+  'ekultur-cookie-consent': 'ekulturCookieConsent',
+  'ekultur-core-apis': 'ekulturCoreApis',
+  'ekultur-mfe-monorepo': 'ekulturMfeMonorepo',
+  'ekultur-sso-auth': 'ekulturSsoAuth',
   'ekultur-handover': 'ekulturHandover',
-  'virtuelt-museum': 'virtueltMuseum',
-  'ekultur-core-gateway': 'ekulturCoreGateway',
   'ekultur-ai-vision': 'ekulturAiVision',
   'autosys-ksak': 'autosysKsak',
   'regelforvaltning-engine': 'regelforvaltningEngine',
-  'bekymringsmestring': 'bekymringsmestring',
+  'ciber-cloud-n5d': 'ciberCloudN5d',
+  'documentum-noark5': 'documentumNoark5',
+  'virtuelt-museum': 'vm3d',
+  'ekultur-core-gateway': 'ekulturCoreApis',
 };
 
 interface ProjectCardProps {

@@ -3,7 +3,7 @@ import { PortfolioContentDictionary } from '../types';
 export const noDictionary: PortfolioContentDictionary = {
   nav: {
     home: 'Hjem',
-    leadership: 'Ledelse',
+    leadership: 'Lederskap',
     experience: 'Erfaring',
     projects: 'Prosjekter',
     skills: 'Kompetanse',
@@ -214,102 +214,242 @@ export const noDictionary: PortfolioContentDictionary = {
     emptyDesc: 'Prøv et annet søkeord eller tilbakestill kategorifilteret for å se alle casestudier.',
     resetFilter: 'Tilbakestill filter',
     caseStudies: {
+      bekymringsmestring: {
+        id: 'bekymringsmestring',
+        title: 'Bekymringsmestring: Digital Helse- og Mestringsplattform',
+        client: 'Volden (Enkeltpersonforetak)',
+        period: '2020 – d.d.',
+        summary:
+          'Helhetlig digital helseplattform for psykologisk veiledning som tilbyr guidede lydmeditasjoner, landsdekkende sertifisert instruktøroversikt med kartvisning, psykoedukative fagressurser og automatisert bokbestilling.',
+        challenge:
+          'Å levere en lynrask, universelt utformet webapplikasjon med kompromissløst personvern (null PII-lagring), sømløs lydavspilling på mobil og interaktivt kart, samtidig som eldre serverless-utvidelser måtte moderniseres til herdede Cloud Functions med bot-beskyttelse før Googles avviklingsfrister.',
+        architectureSolution:
+          'Bygget en moderne serverless SPA med React, Material-UI, Leaflet-kart og Firebase. Etablerte finkornede Cloud Firestore-sikkerhetsregler med tilpassede claims (admin/instruktør), migrerte e-postordrer til HTTPS-kallbare Cloud Functions på Node 22 med Google reCAPTCHA v3 bot-beskyttelse, og integrerte HTML5 Web Audio API for uavbrutt lydavspilling.',
+        metrics: [
+          { value: 'Serverless Firebase', label: 'Skyarkitektur' },
+          { value: 'reCAPTCHA + HTTPS', label: 'Bot-forsvar & e-post' },
+          { value: 'Lyd & Leaflet-kart', label: 'Interaktive funksjoner' },
+        ],
+      },
+      vm3d: {
+        id: 'vm-3d',
+        title: 'VirtueltMuseum 3D: Romkuratering og 3D-kulturarv (vm/3d)',
+        client: 'KulturIT & Nordiske museer',
+        period: '2021 – d.d.',
+        summary:
+          'Interaktiv 3D-formidlingsplattform og kuratorverktøy som lar museer kuratere virtuelle utstillinger i tilpassbare 3D-gallerier og presentere høyoppløselige 3D-skanninger med sanntids lyssetting og romlig interaksjon.',
+        challenge:
+          'Gi museumskuratorer uten 3D-kompetanse mulighet til å komponere engasjerende 3D-utstillinger – plassere gjenstander i virtuelle 3D-rom, sette opp interaktive infopunkter (hotspots), og sikre stabil 60 FPS WebGL-ytelse på tvers av datamaskiner og mobiltelefoner.',
+        architectureSolution:
+          'Arkitektert vm/3d-plattformen basert på Three.js og React Three Fiber (R3F). Utviklet en deklarativ kuratorflyt hvor kuratorene plasserer fotogrammetrimodeller i virtuelle 3D-rom, setter opp romlige infopunkter og skriver formidlingstekster. Integrert mot KulturITs Python-mikrotjenester og PostgreSQL for automatisert glTF/GLB-optimalisering og progressiv nivå-av-detalj (LOD)-strømming.',
+        metrics: [
+          { value: 'R3F / Three.js', label: '3D-teknologistakk' },
+          { value: '3D Virtuelle Rom', label: 'Utstillingsflate' },
+          { value: '60 FPS WebGL', label: 'Grafikkytelse' },
+        ],
+      },
+      vm360: {
+        id: 'vm-360',
+        title: 'VirtueltMuseum 360: Panoramiske sfæriske opplevelser (vm/360)',
+        client: 'KulturIT & Nordiske museer',
+        period: '2021 – d.d.',
+        summary:
+          'Panoramisk utstillingsplattform som lar museer bygge guidede virtuelle 360°-turer fra høyoppløselige sfæriske fotografier, med sammenkoblede romoverganger og rike multimediale stoppepunkter.',
+        challenge:
+          'Strømme ultrahøyoppløste ektangulære sfæriske panoramaer (opptil 8192x4096) uten minnekrasj på mobile enheter, samtidig som kuratorene har et intuitivt redigeringsverktøy for å knytte sammen rom og plassere interaktive elementer.',
+        architectureSolution:
+          'Konstruerte vm/360 med en flertrådet batch-prosessor på klientsiden som automatisk deler høyoppløselige sfæriske bilder inn i fleroppløselige kuppelfliser (tiled dome). Bygget en komplett kuratorløsning der museumsfagfolk kobler sammen 360°-rom, definerer retningsbestemte navigasjonsportaler og integrerer kuraterte lydspor, videoklipp og fordypningstekster.',
+        metrics: [
+          { value: '8192x4096', label: 'Kuppeloppløsning' },
+          { value: 'Virtuelle 360-turer', label: 'Kuratorverktøy' },
+          { value: 'Flisedelte kupler', label: 'Strømmingsmotor' },
+        ],
+      },
+      vmScrollytellingQuiz: {
+        id: 'vm-scrollytelling-quiz',
+        title: 'VirtueltMuseum: Scrollytelling & Kunnskapsquiz (vm/scrollytelling & vm/quiz)',
+        client: 'KulturIT & Nordiske museer',
+        period: '2022 – d.d.',
+        summary:
+          'Interaktive moduler for digital historiefortelling og publikumsengasjement som gjør det mulig for museer å kuratere og publisere engasjerende narrative utstillinger med scrollytelling og interaktive kunnskapsquizer.',
+        challenge:
+          'Å gi kuratorene fleksible formidlingsmaler (delt skjerm, heldekkende medier, tematiske tidslinjer) og interaktive quizforløp som fungerer like sømløst i kuratorverktøyet som innebygd i offentlige museumsportaler.',
+        architectureSolution:
+          'Designet vm/scrollytelling og vm/quiz som uavhengige mikrogrensesnitt (microfrontends) i React og TypeScript. Utviklet et maldrevet forfattersystem der kuratorer velger oppsett, konfigurerer rulle-synkroniserte kapittelskifter, og forfatter universelt utformede flervalgsoppgaver støttet av Python Flask- og PostgreSQL-mikrotjenester.',
+        metrics: [
+          { value: 'Mange formater', label: 'Kurator-maler' },
+          { value: 'Mikrogrensesnitt', label: 'Modulær arkitektur' },
+          { value: 'Spillifisert quiz', label: 'Publikumsengasjement' },
+        ],
+      },
+      ekulturCookieConsent: {
+        id: 'ekultur-cookie-consent',
+        title: 'eKultur Egenutviklet Samtykke- og Personvernplattform (cookie-consent-api)',
+        client: 'KulturIT AS',
+        period: '2023 – d.d.',
+        summary:
+          'Lettvekts, egenutviklet løsning for håndtering av informasjonskapsler og samtykke (GDPR og ePrivacy), som erstatter kostbare eksterne leverandører (OneTrust/Cookiebot) på over 150 nordiske museumsportaler.',
+        challenge:
+          'Kommersielle samtykkeløsninger krevde høye månedlige lisenskostnader per domene, la til tunge sporingsskript, og manglet fleksible API-er for flerspråklige samtykkebannere og skreddersydde museumsnettsteder.',
+        architectureSolution:
+          'Arkitektert og utviklet cookie-consent-api – en høyytelses, flerbruker Python/FastAPI-mikrotjeneste mot PostgreSQL. Bygget website_service og language_service for flerspråklige personvernerklæringer, kategoribasert skriptblokkering (nødvendige, analyse, markedsføring), og integrert tilgangsstyring mot authorization-api.',
+        metrics: [
+          { value: 'GDPR / ePrivacy', label: 'Etterlevelse' },
+          { value: '100% In-house', label: 'Lisenskostnad' },
+          { value: '150+', label: 'Nettsteder i drift' },
+        ],
+      },
+      ekulturCoreApis: {
+        id: 'ekultur-core-apis',
+        title: 'eKultur Domene-API-er & Egenutviklet PostgreSQL Meldingskø',
+        client: 'KulturIT AS',
+        period: '2018 – d.d.',
+        summary:
+          'Sentralt mikrotjenesteøkosystem for over 150 nordiske kulturinstitusjoner, bygget på FastAPI, SQLAlchemy 2.0 og en egenutviklet transaksjonssikker meldingskø i PostgreSQL.',
+        challenge:
+          'Å frikoble komplekse flerbruker-domeneoperasjoner på tvers av hundrevis av uavhengige museer uten å innføre unødvendig driftskompleksitet med eksterne meldingsmeglere, samtidig som absolutt ACID-transaksjonssikkerhet ivaretas.',
+        architectureSolution:
+          'Utviklet kjerne-API-er (app-registry-api for ruting mellom leietakere, broadcast-api for Server-Sent Events (SSE) med ETag-caching, museum-api, brukersynkronisering mot Microsoft Graph og helpdesk-integrasjon mot Freshservice). Bygget en egenutviklet transaksjonssikker meldingskø direkte i PostgreSQL, noe som eliminerte behovet for eksterne meldingsmeglere (ingen RabbitMQ) og garanterte transaksjonssikker oppgavefordeling.',
+        metrics: [
+          { value: '150+', label: 'Kulturinstitusjoner' },
+          { value: 'PostgreSQL', label: 'Transaksjonssikker meldingskø' },
+          { value: 'SSE / Push', label: 'Felles meldingstjeneste' },
+        ],
+      },
+      ekulturMfeMonorepo: {
+        id: 'ekultur-mfe-monorepo',
+        title: 'eKultur Mikrogrensesnitt & Fellesmoduler Monorepo (30+ pakker)',
+        client: 'KulturIT AS',
+        period: '2019 – d.d.',
+        summary:
+          'Helhetlig Turborepo-monorepo med over 30 delte NPM-pakker, designsystem og mikrogrensesnitt som forener hele eKultur-applikasjonsporteføljen.',
+        challenge:
+          'Å opprettholde enhetlig institusjonell profil, felles innloggingstilstand (SSO) og delte interaktive komponenter på tvers av titalls frittstående webapplikasjoner utviklet over flere tiår.',
+        architectureSolution:
+          'Arkitektert @ekultur/kit-modules monorepo med Turborepo. Utviklet @ekultur/header-microfrontend (felles topplinje med app-veksler og direktesendte driftsmeldinger), @ekultur/ekultur-mui (Material UI v6/v7 designsystem), @ekultur/authentication (token-håndtering mot Zitadel og Entra ID), @ekultur/dms-uppy-upload (flerfilsopplasting med gjenopptakelse), samt optimaliserte CloudFront CDN-distribusjoner.',
+        metrics: [
+          { value: '30+ Pakker', label: 'Monorepo-omfang' },
+          { value: 'Header MFE', label: 'Felles topplinje' },
+          { value: 'MUI v6/v7', label: 'Felles designsystem' },
+        ],
+      },
+      ekulturSsoAuth: {
+        id: 'ekultur-sso-auth',
+        title: 'eKultur Felles SSO & OAuth2 Autentiseringsinfrastruktur',
+        client: 'KulturIT AS',
+        period: '2019 – d.d.',
+        summary:
+          'Sentralisert Single Sign-On (SSO) OAuth2-autentisering og finkornet tilgangsstyring for alle eKultur-løsninger på tvers av 150+ nordiske kulturinstitusjoner.',
+        challenge:
+          'Å samle autentisering og brukeridentitet på tvers av eldre og moderne applikasjoner samtidig som tredjeparts-cookies fases ut, sikre streng CSRF-beskyttelse og håndtere flerbruker rollebasert tilgangsstyring (RBAC).',
+        architectureSolution:
+          'Utviklet sentral OAuth2 Authorization Code flow med auths-backend (Python) og auths-frontend (React på login.ekultur.org). Forfattet ADR 001 for utfasing av tredjeparts-cookies via SameSite refresh-token cookies og partisjonert tokenlagring. Bygget authorization-api for å håndtere organisasjonsspesifikke rettigheter, roller og API-nøkler for hele økosystemet.',
+        metrics: [
+          { value: 'OAuth2 / OIDC', label: 'Protokollstandard' },
+          { value: 'Førsteparts-cookies', label: 'Sikkerhets-ADR (ADR 001)' },
+          { value: 'RBAC-motor', label: 'Tilgangsstyring' },
+        ],
+      },
       ekulturHandover: {
         id: 'ekultur-handover',
-        title: 'eKultur Digital Overlevering',
-        client: 'KulturIT & Nasjonale Museer',
-        period: '2022 – Nåværende',
-        summary: 'Nasjonalt mottakssystem for sikker digital overlevering og deponering av samlinger fra museer og privatarkiver til nasjonale bevaringshvelv.',
-        challenge: 'Motta, validere og pakke enorme arkivpakker (flere hundre gigabyte) med sensitive metadata og mediefiler uten minnelekkasjer eller nedetid.',
-        architectureSolution: 'Designet en hendelsesstyrt, strømmingsbasert rørledning i Azure AKS med RabbitMQ, chunked sjekksummering og automatisert formatverifisering.',
+        title: 'eKultur Handover: E-ARK Nasjonal Digital Bevaringsrørledning',
+        client: 'KulturIT & Nasjonalbiblioteket',
+        period: '2023 – d.d.',
+        summary:
+          'Høyytelses asynkron bevaringsrørledning som orkestrerer pakking, validering og pliktavlevering av nordisk kulturarv til Nasjonalbibliotekets sikringsmagasiner.',
+        challenge:
+          'Å bevare millioner av høyoppløselige digitale originalfiler og relasjonelle katalogdata i henhold til den internasjonale E-ARK AIP-standarden, uten nedetid eller datatap under langvarig overføring.',
+        architectureSolution:
+          'Arkitektert et asynkront prosesseringsnettverk med 8 uavhengige arbeidere (workers) koordinert via Python 3.12 / FastAPI og WebSockets. Integrert med Java 25 E-ARK-pakkemotor (METS og Dublin Core XML-skjemaer), og direkte strømming av fler-gigabyte arkivpakker til Nasjonalbiblioteket via AWS S3 flerparts-opplasting.',
         metrics: [
-          { value: '99.9%', label: 'Leveranse-pålitelighet' },
-          { value: '4x', label: 'Raskere validering' },
-          { value: '100%', label: 'Revisjonsspor-dekning' },
-        ],
-      },
-      virtueltMuseum: {
-        id: 'virtuelt-museum',
-        title: 'VirtueltMuseum: 3D & 360° Kulturarv',
-        client: 'KulturIT & Nordiske Museer',
-        period: '2021 – Nåværende',
-        summary: 'Interaktiv oppdagelsesplattform som bringer historiske gjenstander og rom til live gjennom sanntids 3D-visning og 360-graders sfæriske utstillinger.',
-        challenge: 'Rendre komplekse 3D-fotogrammetrimodeller og strømme ultrahøyoppløste 360-panoramaer (opptil 8192x4096) på tvers av mobil og desktop uten hakking.',
-        architectureSolution: 'Bygget en lettvekts 3D-visningsmotor basert på Three.js/R3F kombinert med fleroppløselig IIIF-bildevisning for gigapiksel-zoom.',
-        metrics: [
-          { value: '8192px', label: 'Panoramaoppløsning' },
-          { value: '60 FPS', label: 'Jevn bildefrekvens' },
-          { value: '0 kB', label: 'Tilleggsapper kreves' },
-        ],
-      },
-      ekulturCoreGateway: {
-        id: 'ekultur-core-gateway',
-        title: 'eKultur API Gateway & Tjenestemesh',
-        client: 'KulturIT',
-        period: '2020 – 2023',
-        summary: 'Sentral API Gateway og integrasjonsnav for hele eKultur-økosystemet med felles autentisering, hastighetsbegrensning og telemetri.',
-        challenge: 'Konsolidere titalls uavhengige mikrotjenester bak et enhetlig, sikkert og høyytelses API med felles autorisasjon og OpenTelemetry-sporing.',
-        architectureSolution: 'Arkitektur med distribuert gateway, JWT-validering i minnet, Redis-caching og felles OpenAPI-kontrakter.',
-        metrics: [
-          { value: '15M+', label: 'Månedlige API-kall' },
-          { value: '<12ms', label: 'Gateway overhead' },
-          { value: '100%', label: 'OpenAPI-kontraktdekning' },
+          { value: '10M+', label: 'Bevarte objekter' },
+          { value: '8 Arbeidere', label: 'Asynkront arbeidernettverk' },
+          { value: 'E-ARK AIP', label: 'Pliktavleveringsstandard' },
         ],
       },
       ekulturAiVision: {
         id: 'ekultur-ai-vision',
-        title: 'AI Vision Samlingsberikelse',
-        client: 'KulturIT & Forskningspartnere',
-        period: '2023 – Nåværende',
-        summary: 'Automatisert bildeanalyse og semantisk berikelse av historiske fotosamlinger ved hjelp av maskinlæring og datasyn.',
-        challenge: 'Klassifisere millioner av historiske bilder med relevante emneknagger, farger og motivdeteksjon uten å overbelaste produksjonsbasene.',
-        architectureSolution: 'Asynkron batch- og meldingskøbasert arkitektur som prosesserer mediefiler i bakgrunnen med fallbacks og manuell kuratering.',
+        title: 'eKultur AI Vision: Automatisert Samlingsberikelse & OCR for Museer',
+        client: 'KulturIT AS',
+        period: '2024 – d.d.',
+        summary:
+          'Asynkron kunstig intelligens- og datasynstjeneste som automatiserer optisk tegngjenkjenning (OCR), manuskript-transkribering og semantisk emneknagging for historiske museumssamlinger.',
+        challenge:
+          'Prosessere millioner av digitaliserte historiske dokumenter, håndskrevne protokoller og fotografiske verk uten å overskride eksterne API-begrensninger eller forsinke katalogsystemenes ordinære drift.',
+        architectureSolution:
+          'Utviklet en hendelsesstyrt, asynkron FastAPI-mikrotjeneste integrert mot Google Cloud Vision API med ratebegrensning og mottrykkshåndtering (backpressure), Pillow bildeprosesseringsrørledning og AWS S3/Boto3-lagring. Oppgaver distribueres og køes via en egenutviklet transaksjonssikker meldingskø i PostgreSQL. Transkriberte tekster og AI-genererte emneknagger indekseres i Solr og PostgreSQL for umiddelbar fulltekstsøking.',
         metrics: [
-          { value: '2M+', label: 'Bilder analysert' },
-          { value: '85%', label: 'Automatisk treffsikkerhet' },
-          { value: '3x', label: 'Økt søkbarhet' },
+          { value: 'Cloud Vision', label: 'Bildeanalyse & OCR' },
+          { value: 'Asynkron', label: 'Hendelsesstyrt rørledning' },
+          { value: 'PostgreSQL-kø', label: 'Egenutviklet oppgavemegler' },
         ],
       },
       autosysKsak: {
         id: 'autosys-ksak',
-        title: 'Autosys KSAK: Kjøretøygodkjenning',
+        title: 'Autosys KSAK: Nasjonal Kjøretøygodkjenning & Modernisering',
         client: 'Statens vegvesen',
         period: '2015 – 2018',
-        summary: 'Kjernesystem for automatisert saksbehandling, typegodkjenning og registrering av kjøretøy i Norge.',
-        challenge: 'Erstatte en 30 år gammel stormaskinmonolitt med moderne mikrotjenester med null toleranse for feilberegninger eller nedetid.',
-        architectureSolution: 'Distribuert tjenestearkitektur i Java/Spring med strenge domenemodeller, asynkron meldingsutveksling og automatiserte godkjenningsregler.',
+        summary:
+          'Nasjonal digital transformasjon av saksbehandling for enkeltgodkjenning og teknisk ombygging av kjøretøy for Statens vegvesen, som erstattet tunge papirrutiner med en moderne, automatisert digital tjeneste.',
+        challenge:
+          'Landets trafikkstasjoner var bundet til manuelle papirbunker og terminaler mot stormaskin. Saksbehandlingstiden for godkjenning av kjøretøy kunne ta uker, og løsningen krevde 100 % oppetid og null toleranse for feil under typegodkjenning.',
+        architectureSolution:
+          'Designet en moderne tjenesteorientert arkitektur med Spring Boot REST-mikrotjenester, integrert mot Autosys Oracle-databaser, asynkron meldingsutveksling og et tastaturoptimalisert, universelt utformet React-grensesnitt tilpasset kontrollørenes arbeidshverdag.',
         metrics: [
           { value: '100k+', label: 'Årlige godkjenninger' },
-          { value: '99.99%', label: 'Systemoppetid' },
-          { value: '80%', label: 'Automatisk behandlet' },
+          { value: '-70%', label: 'Redusert behandlingstid' },
+          { value: '70+', label: 'Trafikkstasjoner i Norge' },
         ],
       },
       regelforvaltningEngine: {
         id: 'regelforvaltning-engine',
-        title: 'Nasjonal Regelmotor for Kjøretøy',
+        title: 'Statens vegvesen: Nasjonal Regelmotor for Kjøretøy',
         client: 'Statens vegvesen',
         period: '2012 – 2015',
-        summary: 'Høyytelses regelmotor som evaluerer over 11 000 tekniske og juridiske regler i sanntid for all kjøretøyregistrering i Norge.',
-        challenge: 'Evaluere komplekse, sammenkoblede regeltrær over historiske regelverk tilbake til 1970-tallet med sub-sekunds responstid.',
-        architectureSolution: 'Kompilert regelgraf i minnet med versjonshåndtert regelhistorikk og optimaliserte evalueringsbaner.',
+        summary:
+          'Samfunnskritisk automatisert regelmotor som evaluerer over 11 000 tekniske og juridiske regler i sanntid for all kjøretøyregistrering og typegodkjenning i Norge.',
+        challenge:
+          'Over 11 000 tekniske og juridiske regler med innbyrdes avhengigheter og regelendringer tilbake til 1970-tallet krevde manuell kontroll av fageksperter og skapte store administrative forsinkelser.',
+        architectureSolution:
+          'Konstruerte en deterministisk, høyytelses regelmotor i Java 8 med strømmingsbaserte evalueringsgrafer i minnet, historisk versjonshåndtering av lovverk, og et spesialisert React/Flux-grensesnitt for etatens jurister og saksbehandlere.',
         metrics: [
-          { value: '11k+', label: 'Aktive regler' },
-          { value: '<50ms', label: 'Gjennomsnittlig evalueringstid' },
-          { value: '100%', label: 'Deterministisk validering' },
+          { value: '11 000+', label: 'Forvaltede regler' },
+          { value: '< 25ms', label: 'Evalueringstid per sak' },
+          { value: '94%', label: 'Automatiseringsgrad' },
         ],
       },
-      bekymringsmestring: {
-        id: 'bekymringsmestring',
-        title: 'Bekymringsmestring.no',
-        client: 'Volden (Enkeltpersonforetak)',
-        period: '2023 – 2024',
-        summary: 'Digital helse- og mestringsplattform utviklet for psykologisk veiledning og mestring av bekymring og angst.',
-        challenge: 'Skape en rolig, universelt utformet og lynrask brukeropplevelse med kompromissløst personvern og null sporingsskript.',
-        architectureSolution: 'Statisk generert, universelt utformet webarkitektur (100% WCAG 2.1 AA) med LCP < 1.0s, ren semantikk og null eksterne avhengigheter.',
+      ciberCloudN5d: {
+        id: 'ciber-cloud-n5d',
+        title: 'Ciber N5D: Noark 5 i Skyen & Skymodernisering',
+        client: 'Ciber Norge AS',
+        period: '2013 – 2015',
+        summary:
+          'Skymodernisering og containerisering av arkiv- og saksbehandlingsløsninger basert på NOARK 5-standarden for offentlig sektor, kombinert med administrativt personalansvar for konsulentteamet.',
+        challenge:
+          'Tradisjonelle arkivsystemer var tunge on-premise-monolitter med langsomme utrullinger. Målet var å etablere en flerbruker-skyløsning (N5D) som oppfylte Riksarkivets strenge bevaringskrav.',
+        architectureSolution:
+          'Designet skymodellering på Microsoft Azure med Docker og Kubernetes (AKS), etablerte automatiserte CI/CD-pipelines og bygde integrasjonslag med REST, SOAP og meldingskøer for hybride datasentre.',
         metrics: [
-          { value: '100%', label: 'WCAG 2.1 AA oppfyllelse' },
-          { value: '<1.0s', label: 'Largest Contentful Paint' },
-          { value: '0', label: 'Tredjeparts sporere' },
+          { value: '-40%', label: 'Redusert driftskostnad (TCO)' },
+          { value: '100%', label: 'Noark 5-etterlevelse' },
+          { value: 'Daglig', label: 'Automatiserte CI/CD-utrullinger' },
+        ],
+      },
+      documentumNoark5: {
+        id: 'documentum-noark5',
+        title: 'Documentum NOARK 5: Sak- og Arkivkjerne',
+        client: 'Statens vegvesen / Ciber',
+        period: '2008 – 2013',
+        summary:
+          'Arkitektur, integrasjonskjerne og søkeløsning for Statens vegvesens felles sak- og arkivsystem basert på NOARK 5-standarden og EMC Documentum.',
+        challenge:
+          'Håndtere titalls millioner offentlige saksdokumenter og journalposter med strenge krav til journalføring, innsyn, gradering, langtidsbevaring og søketider på tvers av hele etaten.',
+        architectureSolution:
+          'Utviklet en sertifisert NOARK 5-arkivkjerne integrert mot EMC Documentum repository via DFC, Apache Solr distribuert søkeklynge for sub-50ms fritekstsøk, og asynkron meldingsutveksling med JMS/ActiveMQ.',
+        metrics: [
+          { value: '10M+', label: 'Arkiverte dokumenter' },
+          { value: '< 50ms', label: 'Søketid med Solr' },
+          { value: '100%', label: 'NOARK 5-godkjent' },
         ],
       },
     },
@@ -391,7 +531,7 @@ export const noDictionary: PortfolioContentDictionary = {
     educationTitle: 'Utdanning',
     educationDegree: 'Cand.Mag. i Informatikk',
     educationSchool: 'Universitetet i Oslo (UiO)',
-    educationPeriod: '2000 – 2004',
+    educationPeriod: '2004 – 2008',
     educationDescription: 'Fireårig grad med fokus på distribuerte systemer, programvarearkitektur, algoritmer og databaser.',
     printNotice: 'Generert fra oyvind.volden.family • 1-klikks PDF/utskriftsvennlig versjon',
   },

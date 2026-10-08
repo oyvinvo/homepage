@@ -214,60 +214,174 @@ export const enDictionary: PortfolioContentDictionary = {
     emptyDesc: 'Try adjusting your search query or reset category filters to view all architectural projects.',
     resetFilter: 'Reset filters',
     caseStudies: {
-      ekulturHandover: {
-        id: 'ekultur-handover',
-        title: 'eKultur Handover: E-ARK National Digital Preservation Pipeline',
-        client: 'KulturIT & National Museums',
-        period: '2022 – Present',
-        summary: 'National ingestion and archival preservation platform for secure digital deposit and validation of cultural collections into secure preservation repositories.',
-        challenge: 'Ingest, validate, and package massive archival packages (hundreds of gigabytes) containing sensitive metadata and multimedia assets without memory leaks or downtime.',
-        architectureSolution: 'Engineered an event-driven streaming pipeline on Azure AKS with RabbitMQ, chunked cryptographic verification, and automated metadata format conformance checking.',
+      bekymringsmestring: {
+        id: 'bekymringsmestring',
+        title: 'Bekymringsmestring: Mental Health & Mindfulness Platform',
+        client: 'Volden (Sole Proprietorship)',
+        period: '2020 – Present',
+        summary:
+          'Full-stack digital mental health platform providing guided mindfulness audio meditations, national certified instructor directory with geo-mapping, psychoeducational resources, and automated book checkout.',
+        challenge:
+          'Delivering a responsive, zero-PII mental health platform with seamless mobile audio playback and interactive nationwide instructor mapping, while modernizing legacy serverless extensions into hardened, bot-protected Cloud Functions before platform deprecation deadlines.',
+        architectureSolution:
+          'Engineered a modern serverless SPA utilizing React, Material-UI, Leaflet geo-mapping, and Firebase. Implemented fine-grained Cloud Firestore security rules with custom claims (Admin/Instructor), migrated transactional email to HTTPS callable Cloud Functions on Node 22 with Google reCAPTCHA v3 bot protection, and integrated HTML5 Web Audio API for mindfulness tracks.',
         metrics: [
-          { value: '99.9%', label: 'Delivery Reliability' },
-          { value: '4x', label: 'Faster Validation Throughput' },
-          { value: '100%', label: 'Audit Trail Coverage' },
+          { value: 'Serverless Firebase', label: 'Cloud Architecture' },
+          { value: 'reCAPTCHA + HTTPS', label: 'Bot Defense & Mail' },
+          { value: 'Audio & Leaflet', label: 'Interactive Features' },
         ],
       },
-      virtueltMuseum: {
-        id: 'virtuelt-museum',
+      vm3d: {
+        id: 'vm-3d',
         title: 'VirtueltMuseum 3D: Curated Virtual 3D Rooms & Artifacts (vm/3d)',
         client: 'KulturIT & Nordic Museums',
         period: '2021 – Present',
-        summary: 'Interactive digital discovery platform bringing historic museum artifacts and physical gallery spaces to life via real-time 3D models and 360° spherical virtual exhibitions.',
-        challenge: 'Render detailed 3D photogrammetry meshes and stream ultra-high-resolution 360° panoramas (up to 8192x4096) across mobile and desktop devices without GPU stutter.',
-        architectureSolution: 'Architected a lightweight 3D viewing engine using Three.js/R3F paired with tiled multi-resolution IIIF image streaming for smooth gigapixel deep-zoom.',
+        summary:
+          'Interactive 3D heritage platform and exhibition curation suite enabling museums to curate virtual exhibitions in customizable 3D rooms and present high-fidelity 3D artifact scans with real-time lighting and spatial interaction.',
+        challenge:
+          'Empowering non-technical museum curators to compose immersive 3D exhibitions—arranging artifacts in spatial 3D rooms, configuring interactive annotation hotspots, and ensuring buttery-smooth 60 FPS WebGL rendering across heterogeneous devices and mobile browsers.',
+        architectureSolution:
+          'Architected the vm/3d platform utilizing Three.js and React Three Fiber (@react-three/fiber). Designed a declarative curation workflow where curators position 3D photogrammetry models inside virtual 3D gallery rooms, set up spatial hotspots, and craft narrative interpretation cards. Integrated with KulturIT Python microservices and PostgreSQL asset repositories for automated glTF/GLB optimization and progressive level-of-detail (LOD) streaming.',
         metrics: [
-          { value: '8192px', label: 'Panorama Resolution' },
-          { value: '60 FPS', label: 'Smooth Frame Rate' },
-          { value: '0 kB', label: 'External Plugins Required' },
+          { value: 'R3F / Three.js', label: '3D Stack' },
+          { value: '3D Virtual Rooms', label: 'Exhibition Space' },
+          { value: '60 FPS WebGL', label: 'Performance' },
         ],
       },
-      ekulturCoreGateway: {
-        id: 'ekultur-core-gateway',
-        title: 'eKultur API Gateway & Service Mesh',
-        client: 'KulturIT',
-        period: '2020 – 2023',
-        summary: 'Central API gateway and enterprise integration nexus uniting the eKultur microservices ecosystem with centralized authentication, rate limiting, and telemetry.',
-        challenge: 'Consolidate dozens of independent microservices behind a unified, secure, high-throughput API gateway with centralized RBAC and end-to-end distributed tracing.',
-        architectureSolution: 'Distributed gateway architecture with in-memory JWT cryptographic validation, Redis caching layer, and standardized OpenAPI contract enforcement.',
+      vm360: {
+        id: 'vm-360',
+        title: 'VirtueltMuseum 360: Immersive 360° Panoramic Experiences (vm/360)',
+        client: 'KulturIT & Nordic Museums',
+        period: '2021 – Present',
+        summary:
+          'Immersive panoramic exhibition curation platform allowing museums to construct guided 360° virtual tours from high-resolution equirectangular spherical captures with interconnected room transitions and rich multimedia points of interest.',
+        challenge:
+          'Streaming ultra-high-resolution equirectangular spherical panoramas (up to 8192x4096) without memory bloat on mobile devices, while providing museum curators an intuitive authoring tool to link panoramic rooms and place interactive hotspots.',
+        architectureSolution:
+          'Engineered vm/360 featuring a concurrency-pooled client batch processor that automatically slices high-resolution equirectangular captures into multi-resolution spherical dome tiles. Implemented a comprehensive tour curation suite where museum professionals link multiple 360° rooms, define directional navigation portals, and embed curated audio guides, video clips, and interpretive text.',
         metrics: [
-          { value: '15M+', label: 'Monthly API Invocations' },
-          { value: '<12ms', label: 'Gateway Latency Overhead' },
-          { value: '100%', label: 'OpenAPI Contract Coverage' },
+          { value: '8192x4096', label: 'Dome Resolution' },
+          { value: 'Virtual 360 Tours', label: 'Curator Suite' },
+          { value: 'Tiled Domes', label: 'Streaming Engine' },
+        ],
+      },
+      vmScrollytellingQuiz: {
+        id: 'vm-scrollytelling-quiz',
+        title: 'VirtueltMuseum: Scrollytelling Exhibitions & Quizzes (vm/scrollytelling & vm/quiz)',
+        client: 'KulturIT & Nordic Museums',
+        period: '2022 – Present',
+        summary:
+          'Interactive cultural storytelling and visitor gamification modules enabling Nordic museums to curate and publish digital narrative exhibitions using versatile scrollytelling templates and educational quizzes.',
+        challenge:
+          'Empowering museum curators to design rich, immersive editorial narrative exhibitions with multiple presentation templates (split-screen, full-bleed media chapters, thematic timelines) and interactive quiz workflows that mount seamlessly into both admin curation portals and public museum portals.',
+        architectureSolution:
+          'Designed vm/scrollytelling and vm/quiz as independent microfrontends in React and TypeScript. Engineered a template-driven exhibition authoring system allowing curators to select layout structures, configure scroll-triggered step synchronization and media chapter transitions, and author accessible multi-choice quiz progression backed by specialized Python Flask and PostgreSQL microservices.',
+        metrics: [
+          { value: 'Multiple Formats', label: 'Curator Templates' },
+          { value: 'Microfrontends', label: 'Modular Units' },
+          { value: 'Gamified Quizzes', label: 'Engagement' },
+        ],
+      },
+      ekulturCookieConsent: {
+        id: 'ekultur-cookie-consent',
+        title: 'eKultur In-House Cookie Consent & Privacy Platform (cookie-consent-api)',
+        client: 'KulturIT AS',
+        period: '2023 – Present',
+        summary:
+          'Lightweight in-house GDPR & ePrivacy cookie consent management platform replacing costly external commercial vendors (OneTrust/Cookiebot) across 150+ Nordic cultural heritage web portals.',
+        challenge:
+          'Commercial consent management platforms charged exorbitant recurring multi-domain licensing fees, injected heavy tracking scripts, and lacked localized multi-language banner control and headless API access for custom cultural museum portals.',
+        architectureSolution:
+          'Architected and built cookie-consent-api—a high-performance, multi-tenant Python/FastAPI microservice backed by PostgreSQL. Implemented website_service and language_service for localized privacy policies, category-based script blocking/release (strictly necessary, analytical, marketing), and centralized authorization integration with authorization-api.',
+        metrics: [
+          { value: 'GDPR / ePrivacy', label: 'Compliance' },
+          { value: '100% In-House', label: 'Vendor Cost' },
+          { value: '150+', label: 'Portals Powered' },
+        ],
+      },
+      ekulturCoreApis: {
+        id: 'ekultur-core-apis',
+        title: 'eKultur Domain APIs & In-House PostgreSQL Message Queue',
+        client: 'KulturIT AS',
+        period: '2018 – Present',
+        summary:
+          'Central microservices ecosystem powering 150+ Nordic cultural institutions with FastAPI, SQLAlchemy 2.0, and a custom in-house transactional message queue in PostgreSQL.',
+        challenge:
+          'Decoupling multi-tenant museum domain operations across hundreds of independent institutions while avoiding external broker operational complexity and ensuring absolute ACID consistency.',
+        architectureSolution:
+          'Engineered core domain APIs (app-registry-api for loop-free tenant routing, broadcast-api for Server-Sent Events with ETag caching, museum-api, user-directory-sync with MS Graph, helpdesk-sync with Freshservice). Built a custom transactional message queue directly in PostgreSQL, eliminating external message brokers (no RabbitMQ) while guaranteeing transactionally safe task dispatch and asynchronous background processing.',
+        metrics: [
+          { value: '150+', label: 'Institutions' },
+          { value: 'PostgreSQL', label: 'Message Queue' },
+          { value: 'SSE / Push', label: 'Event Streaming' },
+        ],
+      },
+      ekulturMfeMonorepo: {
+        id: 'ekultur-mfe-monorepo',
+        title: 'eKultur Microfrontends & Shared Modules Monorepo (30+ Packages)',
+        client: 'KulturIT AS',
+        period: '2019 – Present',
+        summary:
+          'Comprehensive Turborepo monorepo publishing 30+ shared NPM packages, design systems, and microfrontends unifying the entire eKultur web application ecosystem.',
+        challenge:
+          'Maintaining consistent institutional branding, single sign-on (SSO) session states, and shared interactive components across dozens of standalone web applications developed over multiple decades.',
+        architectureSolution:
+          'Architected the @ekultur/kit-modules Turborepo monorepo. Created @ekultur/header-microfrontend (universal top shell with app switching and live broadcast notices), @ekultur/ekultur-mui (Material UI v6/v7 design system), @ekultur/authentication (token proxies for Zitadel and Entra ID), @ekultur/dms-uppy-upload (resumable multi-file uploads), and standalone CloudFront CDN bundles.',
+        metrics: [
+          { value: '30+ Packages', label: 'Monorepo Scope' },
+          { value: 'Header MFE', label: 'Universal Shell' },
+          { value: 'MUI v6/v7', label: 'Design System' },
+        ],
+      },
+      ekulturSsoAuth: {
+        id: 'ekultur-sso-auth',
+        title: 'eKultur Central SSO & OAuth2 Infrastructure',
+        client: 'KulturIT AS',
+        period: '2019 – Present',
+        summary:
+          'Centralized Single Sign-On (SSO) OAuth2 authentication and granular authorization ecosystem serving all eKultur applications across 150+ Nordic cultural institutions.',
+        challenge:
+          'Unifying authentication and user identity across diverse legacy and modern web applications while phasing out third-party cookies, ensuring strict CSRF protection, and orchestrating centralized multi-tenant organization authorization (RBAC).',
+        architectureSolution:
+          'Architected and implemented the central OAuth2 Authorization Code flow with auths-backend (Python) and auths-frontend (React on login.ekultur.org). Authored ADR 001 eliminating third-party cookies via SameSite refresh token cookies and partitioned token storage. Engineered authorization-api to enforce multi-tenant role-based access control (RBAC), organization-scoped permissions, and API key management across the entire ecosystem.',
+        metrics: [
+          { value: 'OAuth2 / OIDC', label: 'Protocol' },
+          { value: 'First-Party Cookies', label: 'Security ADR (ADR 001)' },
+          { value: 'RBAC Engine', label: 'Authorization' },
+        ],
+      },
+      ekulturHandover: {
+        id: 'ekultur-handover',
+        title: 'eKultur Handover: E-ARK National Digital Preservation Pipeline',
+        client: 'KulturIT & National Library of Norway',
+        period: '2023 – Present',
+        summary:
+          'High-throughput, asynchronous digital preservation pipeline orchestrating the packaging, validation, and legal deposit transmission of Nordic cultural heritage to Nasjonalbiblioteket (National Library of Norway).',
+        challenge:
+          'Preserving millions of high-resolution digital master assets and relational catalog records in strict compliance with the international E-ARK Archival Information Package (AIP) specification without service interruption or data loss.',
+        architectureSolution:
+          'Architected an 8-worker decoupled asynchronous processing mesh coordinated via Python 3.12 / FastAPI and WebSockets. Integrated Java 25 E-ARK generation with METS and Dublin Core XML schemas, streaming multi-gigabyte archival packages directly to National Library storage via AWS S3 multipart uploads.',
+        metrics: [
+          { value: '10M+', label: 'Preserved Artifacts' },
+          { value: '8 Workers', label: 'Worker Architecture' },
+          { value: 'E-ARK AIP', label: 'Archival Standard' },
         ],
       },
       ekulturAiVision: {
         id: 'ekultur-ai-vision',
         title: 'eKultur AI Vision: Automated Museum Collection Enrichment & OCR',
-        client: 'KulturIT & Research Partners',
-        period: '2023 – Present',
-        summary: 'Automated computer vision pipeline performing semantic classification and descriptive tagging across millions of historical archival photographs.',
-        challenge: 'Classify millions of historical photographs with relevant visual concepts, palettes, and object detection without degrading production database performance.',
-        architectureSolution: 'Asynchronous event-driven batch processing architecture utilizing message queues to analyze media in the background with manual curation overrides.',
+        client: 'KulturIT AS',
+        period: '2024 – Present',
+        summary:
+          'Asynchronous artificial intelligence and computer vision service automating optical character recognition (OCR), manuscript transcription, and semantic tagging for historical museum collections.',
+        challenge:
+          'Processing millions of digitized historical manuscripts, handwritten records, and photographic artifacts without overwhelming external API rate limits or blocking synchronous catalog workflows.',
+        architectureSolution:
+          'Designed an asynchronous event-driven FastAPI microservice integrating Google Cloud Vision API with rate-limiting backpressure, Pillow image pipeline optimization, and AWS S3/Boto3 storage. Queued and dispatched tasks using an in-house transactional message queue in PostgreSQL. Transcribed texts and AI semantic labels are indexed into Solr and PostgreSQL for instant full-text search.',
         metrics: [
-          { value: '2M+', label: 'Photographs Classified' },
-          { value: '85%', label: 'Automated Accuracy Rate' },
-          { value: '3x', label: 'Search Discovery Increase' },
+          { value: 'Google Cloud Vision', label: 'Image Engine' },
+          { value: 'Asynchronous', label: 'Processing Mode' },
+          { value: 'PostgreSQL Queue', label: 'Queue Engine' },
         ],
       },
       autosysKsak: {
@@ -275,13 +389,16 @@ export const enDictionary: PortfolioContentDictionary = {
         title: 'Autosys KSAK: National Vehicle Approvals Modernization',
         client: 'Statens vegvesen',
         period: '2015 – 2018',
-        summary: 'Core national enterprise platform automating vehicle case handling, technical homologation, and vehicle approvals across Norway.',
-        challenge: 'Decommission a 30-year-old COBOL mainframe monolith and replace it with modern microservices with absolute zero tolerance for calculation error or operational downtime.',
-        architectureSolution: 'Distributed Java/Spring microservices architecture with strict domain boundaries, asynchronous event queuing, and automated statutory approval pipelines.',
+        summary:
+          'Nationwide digital transformation of individual vehicle approvals and safety modifications for the Norwegian transport authority.',
+        challenge:
+          'Nationwide vehicle inspection stations relied on paper dossiers and terminal-based legacy mainframes, requiring weeks for vehicle certification.',
+        architectureSolution:
+          'Architected modern service-oriented architecture with Spring Boot REST microservices, Oracle Autosys database integration, and high-contrast, keyboard-optimized React web applications.',
         metrics: [
-          { value: '100k+', label: 'Annual Case Approvals' },
-          { value: '99.99%', label: 'Platform Availability' },
-          { value: '80%', label: 'Straight-Through Automated' },
+          { value: '100k+', label: 'Annual Approvals' },
+          { value: '-70%', label: 'Inspection Cycle' },
+          { value: '70+', label: 'Nationwide Stations' },
         ],
       },
       regelforvaltningEngine: {
@@ -289,27 +406,50 @@ export const enDictionary: PortfolioContentDictionary = {
         title: 'Statens vegvesen Automated Regulatory Rule Engine',
         client: 'Statens vegvesen',
         period: '2012 – 2015',
-        summary: 'High-throughput decision engine evaluating over 11,000 statutory and technical rules in real-time for all motor vehicle registrations in Norway.',
-        challenge: 'Evaluate deeply interconnected regulatory decision trees spanning four decades of vehicle legislation with sub-second response times.',
-        architectureSolution: 'In-memory compiled directed acyclic rule graph featuring temporal versioning and optimized execution path pruning.',
+        summary:
+          'Mission-critical automated regulatory engine evaluating complex Norwegian road, transport, and vehicular legislation across nationwide registries.',
+        challenge:
+          'Over 11,000 regulatory legal rules with overlapping constraints and frequent legislative amendments required manual human inspection, creating massive administrative backlogs.',
+        architectureSolution:
+          'Engineered a deterministic, high-throughput legal decision engine using Java 8 streams and rule execution pipelines paired with an enterprise React/Flux frontend for legal experts.',
         metrics: [
-          { value: '11k+', label: 'Active Regulatory Rules' },
-          { value: '<50ms', label: 'Average Rule Evaluation' },
-          { value: '100%', label: 'Deterministic Validation' },
+          { value: '11,000+', label: 'Rules Evaluated' },
+          { value: '< 25ms', label: 'Decision Latency' },
+          { value: '94%', label: 'Automation Rate' },
         ],
       },
-      bekymringsmestring: {
-        id: 'bekymringsmestring',
-        title: 'Bekymringsmestring: Mental Health & Mindfulness Platform',
-        client: 'Volden (Sole Proprietorship)',
-        period: '2023 – 2024',
-        summary: 'Specialized digital mental health platform crafted for cognitive psychological guidance and mastery of chronic worry and anxiety.',
-        challenge: 'Deliver a tranquil, universally accessible, lightning-fast web experience with uncompromised patient confidentiality and zero analytics trackers.',
-        architectureSolution: 'Statically generated, universally designed web architecture (100% WCAG 2.1 AA) achieving LCP < 1.0s, clean semantic DOM, and zero third-party dependencies.',
+      ciberCloudN5d: {
+        id: 'ciber-cloud-n5d',
+        title: 'Ciber N5D: Cloud-Native Noark 5 & Modernization',
+        client: 'Ciber Norge AS',
+        period: '2013 – 2015',
+        summary:
+          'Cloud modernization and containerization of NOARK 5 enterprise recordkeeping solutions for Norwegian public sector organizations, combined with consultant team leadership.',
+        challenge:
+          'Traditional records management systems were monolithic on-premise installations with prolonged release cycles. The goal was to build a multi-tenant cloud offering (N5D) meeting strict National Archives standards.',
+        architectureSolution:
+          'Designed cloud infrastructure on Microsoft Azure using Docker and Kubernetes (AKS), automated CI/CD pipelines, and built integration adapters using REST, SOAP, and message queues for hybrid enterprise datacenters.',
         metrics: [
-          { value: '100%', label: 'WCAG 2.1 AA Conformance' },
-          { value: '<1.0s', label: 'Largest Contentful Paint' },
-          { value: '0', label: 'Third-Party Tracking Scripts' },
+          { value: '-40%', label: 'TCO Reduction' },
+          { value: '100%', label: 'Noark 5 Compliance' },
+          { value: 'Daily', label: 'Automated CI/CD Releases' },
+        ],
+      },
+      documentumNoark5: {
+        id: 'documentum-noark5',
+        title: 'Documentum NOARK 5: Core Recordkeeping Engine',
+        client: 'Statens vegvesen / Ciber',
+        period: '2008 – 2013',
+        summary:
+          'Architecture, integration core, and search infrastructure for Statens vegvesen enterprise records management platform based on the NOARK 5 standard and EMC Documentum.',
+        challenge:
+          'Managing tens of millions of public case records with strict legal compliance, security classifications, long-term preservation standards, and enterprise-wide sub-second search throughput.',
+        architectureSolution:
+          'Developed a certified NOARK 5 archive core interfacing EMC Documentum repository via DFC, deployed Apache Solr distributed search clusters for sub-50ms full-text retrieval, and engineered asynchronous message bus integrations with JMS/ActiveMQ.',
+        metrics: [
+          { value: '10M+', label: 'Archived Records' },
+          { value: '< 50ms', label: 'Search Latency via Solr' },
+          { value: '100%', label: 'NOARK 5 Certified' },
         ],
       },
     },
@@ -391,7 +531,7 @@ export const enDictionary: PortfolioContentDictionary = {
     educationTitle: 'Education',
     educationDegree: 'Cand.Mag. in Computer Science',
     educationSchool: 'University of Oslo (UiO)',
-    educationPeriod: '2000 – 2004',
+    educationPeriod: '2004 – 2008',
     educationDescription: 'Four-year university degree focusing on distributed systems, software architecture, algorithms, and relational databases.',
     printNotice: 'Exported from oyvind.volden.family • 1-click printer and PDF-friendly edition',
   },

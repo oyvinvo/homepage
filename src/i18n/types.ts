@@ -135,15 +135,7 @@ export interface ProjectsTranslation {
   emptyTitle: string;
   emptyDesc: string;
   resetFilter: string;
-  caseStudies: {
-    ekulturHandover: CaseStudyTranslation;
-    virtueltMuseum: CaseStudyTranslation;
-    ekulturCoreGateway: CaseStudyTranslation;
-    ekulturAiVision: CaseStudyTranslation;
-    autosysKsak: CaseStudyTranslation;
-    regelforvaltningEngine: CaseStudyTranslation;
-    bekymringsmestring: CaseStudyTranslation;
-  };
+  caseStudies: Record<string, CaseStudyTranslation>;
   labels: {
     challenge: string;
     solution: string;
